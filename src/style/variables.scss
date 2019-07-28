@@ -1,0 +1,28 @@
+$font-poppins: 'Poppins', sans-serif;
+$font-merriweather: 'Merriweather', serif;
+
+$spacing-tiny: 2px;
+$spacing-xxsmall: 4px;
+$spacing-xsmall: 8px;
+$spacing-small: 12px;
+$spacing-medium: 16px;
+$spacing-large: 24px;
+$spacing-xlarge: 36px;
+$spacing-xxlarge: 48px;
+
+$color-nero: #202020;
+$color-baltic-sea: #2b2a2d;
+$color-zircon: #e1ebeb;
+$color-firebrush: #e49f43;
+
+$mq-responsive: true;
+
+$mq-breakpoints: (
+  small: 375px,
+  medium: 768px,
+  large: 992px,
+  extraLarge: 1200px
+);
+
+$mq-show-breakpoints: (small, medium, large, extraLarge);
+

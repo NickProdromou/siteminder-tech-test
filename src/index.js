@@ -1,18 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import getMoviesByQuery from './actionCreators/getMoviesbyQuery';
-import getMovieDetail from './actionCreators/getMovieDetail';
-import App from './App';
-import './index.css';
+import Layout from './components/layout';
+import './style/global.scss';
 import store from './reducers';
+import FilterView from './components/filterView';
+import DetailRenderer from './components/detailRenderer';
+import { setDefaultBreakpoints, BreakpointProvider } from 'react-socks';
 
-store.dispatch(getMoviesByQuery('star', 1));
-store.dispatch(getMovieDetail('tt0086190'));
+setDefaultBreakpoints([
+  { small: 375 },
+  { medium: 768 },
+  { large: 992 },
+  { extraLlarge: 1200 }
+]);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BreakpointProvider>
+      <Layout SideBar={<FilterView />} Main={<DetailRenderer />} />
+    </BreakpointProvider>
   </Provider>,
   document.getElementById('root')
 );
