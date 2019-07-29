@@ -35,9 +35,9 @@ export default function(state = initialState, action) {
     case FETCHING_MOVIES_FAILURE: {
       const { error } = action.payload;
 
-      // do something with error
+      console.error({ FETCHING_MOVIES_FAILURE: error });
 
-      return { ...state, loadingMovies: false, listError: true };
+      return { ...state, loadingMovies: false, items: [], listError: true };
     }
 
     default:
