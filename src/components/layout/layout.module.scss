@@ -8,6 +8,8 @@
 }
 
 .asideContainer {
+  border-right: 1px solid $color-nero;
+
   @include mq(small) {
     flex: 1 0 auto;
   }

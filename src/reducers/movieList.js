@@ -21,14 +21,15 @@ export default function(state = initialState, action) {
     }
 
     case FETCHING_MOVIES_SUCCESS: {
-      const { response, page } = action.payload;
+      const { response, page, searchTerm } = action.payload;
 
       return {
         ...state,
         loadingMovies: false,
         items: response.Search,
         totalCount: response.totalResults,
-        currentPage: page
+        currentPage: page,
+        searchTerm
       };
     }
 

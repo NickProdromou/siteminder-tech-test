@@ -1,20 +1,43 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
-import Search from '../search';
+import {
+  getMoviesByQuery,
+  getNextPage,
+  getPreviousPage
+} from '../../actionCreators';
 import MovieItem from '../movieItem';
-import { getMoviesByQuery } from '../../actionCreators';
+import PaginatedList from '../paginatedList/paginatedList';
+import Search from '../search';
 import styles from './filterView.module.scss';
 
-export function DumbFilterView({ onInput, items }) {
+export function DumbFilterView({
+  onInput,
+  items,
+  pageNumber,
+  totalCount,
+  loading,
+  searchTerm,
+  getNextPage,
+  getPreviousPage
+}) {
   return (
-    <div>
+    <div className={styles.Root}>
       <div className={styles.searchContainer}>
         <Search onInput={onInput} />
       </div>
-      <p>paginatedList</p>
-      {items && items.map(item => <MovieItem {...item} />)}
+      <div className={styles.listContainer}>
+        <PaginatedList
+          ItemComponent={MovieItem}
+          itemsForPage={items}
+          pageNumber={pageNumber}
+          totalCount={totalCount}
+          getNextPage={getNextPage}
+          getPrevPage={getPreviousPage}
+          loading={loading}
+          searchTerm={searchTerm}
+        />
+      </div>
     </div>
   );
 }
@@ -25,13 +48,21 @@ function mapStateToProps(state) {
   const { movieList } = state;
 
   return {
-    items: movieList.items
+    items: movieList.items,
+    pageNumber: movieList.currentPage,
+    totalCount: movieList.totalCount,
+    loading: movieList.loadingMovies,
+    searchTerm: movieList.searchTerm
   };
 }
 
 function mapDispatchToProps(dispatch) {
   const boundActionCreators = bindActionCreators(
-    { onInput: getMoviesByQuery },
+    {
+      onInput: getMoviesByQuery,
+      getNextPage,
+      getPreviousPage
+    },
     dispatch
   );
 
