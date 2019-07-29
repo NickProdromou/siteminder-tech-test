@@ -2,15 +2,12 @@
 @import '~sass-mq';
 
 .Root {
-  background-color: $color-nero;
   display: flex;
   align-items: stretch;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .asideContainer {
-  background-color: $color-baltic-sea;
-
   @include mq(small) {
     flex: 1 0 auto;
   }

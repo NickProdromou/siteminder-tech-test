@@ -19,7 +19,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "NODE_ENV=test mocha -r '@babel/register' -r 'test/setup.js' test/**/*.test.js",
+    "test": "NODE_ENV=test mocha -r '@babel/register' -r 'ignore-styles' -r 'test/setup.js' 'test/**/*.test.js' --recursive",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -44,6 +44,8 @@
     "babel-preset-react-app-babel-7": "^4.0.2-0",
     "chai": "^4.2.0",
     "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "ignore-styles": "^5.0.1",
     "mocha": "^6.2.0",
     "proxyquire": "^2.1.1",
     "sinon": "^7.3.2",
