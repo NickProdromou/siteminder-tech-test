@@ -1,0 +1,28 @@
+@import '../../style/variables.scss';
+
+.Root {
+  padding: $spacing-small 0;
+  display: flex;
+  position: relative;
+  border: 1px solid $color-baltic-sea;
+  border-radius: 12px;
+  width: 100%;
+}
+
+.textInput {
+  outline: none;
+  border: 0;
+  flex: 1 0 auto;
+  padding-left: $spacing-xlarge;
+  align-items: baseline;
+  font-family: $font-poppins;
+
+  &::placeholder {
+    font-family: $font-poppins;
+  }
+}
+
+.searchIcon {
+  position: absolute;
+  left: 0;
+}

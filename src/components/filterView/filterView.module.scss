@@ -1,1 +1,6 @@
-/* todo */
+@import '../../style/variables.scss';
+
+.searchContainer {
+  display: flex;
+  margin: $spacing-xxsmall $spacing-small;
+}
