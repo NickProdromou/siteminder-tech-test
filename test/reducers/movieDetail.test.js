@@ -2,7 +2,7 @@ import movieDetailReducer, {
   initialState
 } from '../../src/reducers/movieDetail';
 
-describe.only('movieDetail reducer', () => {
+describe('movieDetail reducer', () => {
   describe('when receiving GET_MOVIE_DETAIL_LOADING action', () => {
     let action;
     let returnedState;

@@ -1,1 +1,39 @@
-/* todo */
+@import '../../style/variables.scss';
+
+.Root {
+  display: flex;
+  justify-content: flex-start;
+  padding: $spacing-xxsmall $spacing-xsmall;
+  border-bottom: 1px solid $color-nero;
+}
+
+.titleContainer {
+  align-items: flex-start;
+}
+
+.titleText {
+  font-family: $font-poppins;
+  font-size: 14px;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 65px;
+  margin-left: auto;
+}
+
+.releaseYear {
+  font-family: $font-poppins;
+  font-weight: bold;
+  margin: 0;
+  align-self: flex-end;
+  margin-top: auto;
+  font-size: 1rem;
+}
+
+.selectedIcon {
+  fill: $color-firebrush;
+  width: 32px;
+  height: 32px;
+}
