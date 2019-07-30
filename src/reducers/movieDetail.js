@@ -4,10 +4,13 @@ import {
   GET_MOVIE_DETAIL_FAILURE
 } from '../actions/detail';
 
+import { CLEAR_SELECTED_MOVIE } from '../actions/list';
+
 export const initialState = {
   selectedMovie: null,
   loading: false,
-  selectedMovieError: null
+  error: null,
+  isMovieSelected: false
 };
 
 export default function(state = initialState, action) {
@@ -19,11 +22,20 @@ export default function(state = initialState, action) {
     case GET_MOVIE_DETAIL_SUCCESS: {
       const { payload } = action;
 
-      return { ...state, loading: false, selectedMovie: payload };
+      return {
+        ...state,
+        loading: false,
+        selectedMovie: payload,
+        isMovieSelected: true
+      };
     }
 
     case GET_MOVIE_DETAIL_FAILURE: {
-      return { ...state, loading: false, selectedMovieError: true };
+      return { ...state, loading: false, error: true, isMovieSelected: false };
+    }
+
+    case CLEAR_SELECTED_MOVIE: {
+      return { ...state, isMovieSelected: false, error: false };
     }
 
     default: {

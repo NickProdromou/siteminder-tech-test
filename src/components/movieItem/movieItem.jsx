@@ -8,10 +8,16 @@ export default function movieItem({
   Year,
   isSelected,
   imdbID: id,
-  getMovieDetail
+  getMovieDetail,
+  clearMovieDetail
 }) {
+  console.log(clearMovieDetail);
+
   return (
-    <article className={styles.Root} onClick={() => getMovieDetail(id)}>
+    <article
+      className={styles.Root}
+      onClick={() => (isSelected ? clearMovieDetail(id) : getMovieDetail(id))}
+    >
       <div className={styles.titleContainer}>
         <h1 className={styles.titleText} data-test-id="title-text">
           {Title}

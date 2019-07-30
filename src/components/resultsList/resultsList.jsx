@@ -21,7 +21,7 @@ export default class ResultsList extends Component {
   }
 
   renderList() {
-    const { results, getMovieDetail } = this.props;
+    const { results, getMovieDetail, clearMovieDetail } = this.props;
 
     return (
       (Array.isArray(results) && results.length && (
@@ -32,6 +32,7 @@ export default class ResultsList extends Component {
                 key={item.imdbID}
                 {...item}
                 getMovieDetail={getMovieDetail}
+                clearMovieDetail={clearMovieDetail}
               />
             </li>
           ))}

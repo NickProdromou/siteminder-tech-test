@@ -1,13 +1,14 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
   clearResults,
+  getMovieDetail,
   getMoviesByQuery,
   getNextPage,
   getPreviousPage,
-  getMovieDetail
+  clearMovie
 } from '../../actionCreators';
 import {
   getErrorState,
@@ -37,7 +38,8 @@ export function DumbFilterView({
   getNextPage,
   getPrevPage,
   searchTerm,
-  getMovieDetail
+  getMovieDetail,
+  clearSelectedMovie
 }) {
   return (
     <div className={styles.Root}>
@@ -50,6 +52,7 @@ export function DumbFilterView({
           loading={loading}
           error={error}
           getMovieDetail={getMovieDetail}
+          clearMovieDetail={clearSelectedMovie}
         />
       </div>
       <PageNavigation
@@ -99,12 +102,11 @@ function mapDispatchToProps(dispatch) {
       clearResults,
       getNextPage,
       getPrevPage: getPreviousPage,
-      getMovieDetail
+      getMovieDetail,
+      clearSelectedMovie: clearMovie
     },
     dispatch
   );
-
-  console.log(boundActionCreators);
 
   return {
     ...boundActionCreators

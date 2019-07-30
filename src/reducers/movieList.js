@@ -3,7 +3,8 @@ import {
   FETCHING_MOVIES_SUCCESS,
   FETCHING_MOVIES_FAILURE,
   CLEAR_RESULTS,
-  SET_SELECTED_MOVIE
+  SET_SELECTED_MOVIE,
+  CLEAR_SELECTED_MOVIE
 } from '../actions/list';
 
 export const initialState = {
@@ -66,6 +67,23 @@ export default function(state = initialState, action) {
           ...item,
           isSelected: item.imdbID === movieId
         }))
+      };
+    }
+
+    case CLEAR_SELECTED_MOVIE: {
+      const { movieId } = action.payload;
+
+      const selectedMovieIndex = state.items.findIndex(
+        item => item.imdbID === movieId
+      );
+
+      return {
+        ...state,
+        items: [
+          ...state.items.slice(0, selectedMovieIndex),
+          { ...state.items[selectedMovieIndex], isSelected: false },
+          ...state.items.slice(selectedMovieIndex + 1)
+        ]
       };
     }
 

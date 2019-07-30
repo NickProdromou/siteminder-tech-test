@@ -9,6 +9,14 @@ import {
   getErrorState
 } from './movieList';
 
+import {
+  getSelectedMovie,
+  getSelectedMovieLoadingState,
+  getSelectedMovieErrorState,
+  getIsMovieSelected,
+  getSelectedMovieId
+} from './movieDetail';
+
 export {
   getMovieItems,
   getTotalCount,
@@ -17,5 +25,10 @@ export {
   getSearchTerm,
   showPreviousPageButton,
   getLoadingState,
-  getErrorState
+  getErrorState,
+  getSelectedMovie,
+  getSelectedMovieLoadingState,
+  getSelectedMovieErrorState,
+  getIsMovieSelected,
+  getSelectedMovieId
 };
