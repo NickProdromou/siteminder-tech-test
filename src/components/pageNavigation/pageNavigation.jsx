@@ -24,18 +24,20 @@ export default function PageNavigation({
         <button
           className={styles.controlButton}
           onClick={() => getPrevPage(searchTerm, pageNumber)}
+          data-test-id="prev-page-button"
         >
           <ChevronLeft />
         </button>
       )}
       <div className={styles.listInfo}>
-        {pageNumber && <span>Page {pageNumber}</span>}
-        <span>{totalCount} Results</span>
+        {pageNumber && <span data-test-id="pageNumber">Page {pageNumber}</span>}
+        <span data-test-id="totalCount">{totalCount} Results</span>
       </div>
       {hasNextPage && (
         <button
           className={styles.controlButton}
           onClick={() => getNextPage(searchTerm, pageNumber)}
+          data-test-id="next-page-button"
         >
           <ChevronRight />
         </button>

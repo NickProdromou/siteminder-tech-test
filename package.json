@@ -23,6 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "NODE_ENV=test mocha -r '@babel/register' -r 'ignore-styles' -r 'test/setup.js' 'test/**/*.test.js' --recursive",
+    "test:watch": "npm run test -- --watch",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
