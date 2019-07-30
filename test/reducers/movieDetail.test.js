@@ -60,7 +60,7 @@ describe('movieDetail reducer', () => {
       expect(returnedState).to.deep.eq({
         ...initialState,
         loading: false,
-        error: true
+        error: action.payload.error
       });
     });
   });

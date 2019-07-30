@@ -7,29 +7,38 @@ import {
 import { SET_SELECTED_MOVIE } from '../actions/list';
 
 export default function(movieId) {
-  return dispatch => {
-    dispatch({ type: GET_MOVIE_DETAIL_LOADING });
+  return async dispatch => {
+    try {
+      dispatch({ type: GET_MOVIE_DETAIL_LOADING });
 
-    if (!movieId) {
-      dispatch({
-        type: GET_MOVIE_DETAIL_FAILURE,
-        payload: { error: 'movieId not passed' }
-      });
+      if (!movieId) {
+        dispatch({
+          type: GET_MOVIE_DETAIL_FAILURE,
+          payload: { error: 'movieId not passed' }
+        });
+
+        return;
+      }
+      dispatch({ type: SET_SELECTED_MOVIE, payload: { movieId } });
+
+      const response = await makeAPIRequest({ i: movieId, plot: 'full' });
+
+      if (response.data.Error) {
+        throw response.data;
+      }
+
+      dispatch({ type: GET_MOVIE_DETAIL_SUCCESS, payload: response.data });
 
       return;
-    }
-
-    dispatch({ type: SET_SELECTED_MOVIE, payload: { movieId } });
-
-    makeAPIRequest({ i: movieId, plot: 'full' })
-      .then(response => {
-        dispatch({
-          type: GET_MOVIE_DETAIL_SUCCESS,
-          payload: response.data
-        });
-      })
-      .catch(err => {
-        dispatch({ type: GET_MOVIE_DETAIL_FAILURE, payload: { error: err } });
+    } catch (error) {
+      dispatch({
+        type: GET_MOVIE_DETAIL_FAILURE,
+        payload: {
+          error: error.Error
+            ? error.Error
+            : 'something went wrong with the request'
+        }
       });
+    }
   };
 }

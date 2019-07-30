@@ -31,7 +31,9 @@ export default function(state = initialState, action) {
     }
 
     case GET_MOVIE_DETAIL_FAILURE: {
-      return { ...state, loading: false, error: true, isMovieSelected: false };
+      const { error } = action.payload;
+
+      return { ...state, loading: false, error, isMovieSelected: false };
     }
 
     case CLEAR_SELECTED_MOVIE: {
