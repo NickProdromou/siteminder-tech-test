@@ -9,7 +9,7 @@ import {
   showPreviousPageButton
 } from '../../src/selectors/movieList';
 
-describe.only('movieList selectors', () => {
+describe('movieList selectors', () => {
   describe('getMovieItems', () => {
     describe('when passed valid state', () => {
       let state;
