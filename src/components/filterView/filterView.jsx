@@ -6,7 +6,8 @@ import {
   clearResults,
   getMoviesByQuery,
   getNextPage,
-  getPreviousPage
+  getPreviousPage,
+  getMovieDetail
 } from '../../actionCreators';
 import {
   getErrorState,
@@ -35,7 +36,8 @@ export function DumbFilterView({
   totalCount,
   getNextPage,
   getPrevPage,
-  searchTerm
+  searchTerm,
+  getMovieDetail
 }) {
   return (
     <div className={styles.Root}>
@@ -43,7 +45,12 @@ export function DumbFilterView({
         <Search onInput={onInput} clearResults={clearResults} />
       </div>
       <div className={styles.listContainer}>
-        <ResultsList results={items} loading={loading} error={error} />
+        <ResultsList
+          results={items}
+          loading={loading}
+          error={error}
+          getMovieDetail={getMovieDetail}
+        />
       </div>
       <PageNavigation
         hasNextPage={hasNextPage}
@@ -91,10 +98,13 @@ function mapDispatchToProps(dispatch) {
       onInput: getMoviesByQuery,
       clearResults,
       getNextPage,
-      getPrevPage: getPreviousPage
+      getPrevPage: getPreviousPage,
+      getMovieDetail
     },
     dispatch
   );
+
+  console.log(boundActionCreators);
 
   return {
     ...boundActionCreators

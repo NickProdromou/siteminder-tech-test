@@ -21,14 +21,18 @@ export default class ResultsList extends Component {
   }
 
   renderList() {
-    const { results } = this.props;
+    const { results, getMovieDetail } = this.props;
 
     return (
       (Array.isArray(results) && results.length && (
         <ul className={styles.itemList}>
           {results.map(item => (
-            <li key={item.id}>
-              <MovieItem key={item.id} {...item} />
+            <li key={item.imdbID}>
+              <MovieItem
+                key={item.imdbID}
+                {...item}
+                getMovieDetail={getMovieDetail}
+              />
             </li>
           ))}
         </ul>

@@ -2,7 +2,8 @@ import {
   FETCHING_MOVIES,
   FETCHING_MOVIES_SUCCESS,
   FETCHING_MOVIES_FAILURE,
-  CLEAR_RESULTS
+  CLEAR_RESULTS,
+  SET_SELECTED_MOVIE
 } from '../actions/list';
 
 export const initialState = {
@@ -45,6 +46,26 @@ export default function(state = initialState, action) {
         error,
         currentPage: 0,
         totalCount: 0
+      };
+    }
+
+    case SET_SELECTED_MOVIE: {
+      const { movieId } = action.payload;
+
+      const selectedMovieIndex = state.items.findIndex(
+        item => item.imdbID === movieId
+      );
+
+      return {
+        ...state,
+        items: [
+          ...state.items.slice(0, selectedMovieIndex),
+          { ...state.items[selectedMovieIndex], isSelected: true },
+          ...state.items.slice(selectedMovieIndex + 1)
+        ].map((item, index) => ({
+          ...item,
+          isSelected: item.imdbID === movieId
+        }))
       };
     }
 

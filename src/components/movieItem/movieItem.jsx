@@ -3,9 +3,15 @@ import PropTypes from 'prop-types';
 import styles from './movieItem.module.scss';
 import StarIcon from '../icons/star';
 
-export default function movieItem({ Title, Year, isSelected }) {
+export default function movieItem({
+  Title,
+  Year,
+  isSelected,
+  imdbID: id,
+  getMovieDetail
+}) {
   return (
-    <article className={styles.Root}>
+    <article className={styles.Root} onClick={() => getMovieDetail(id)}>
       <div className={styles.titleContainer}>
         <h1 className={styles.titleText} data-test-id="title-text">
           {Title}
@@ -24,7 +30,8 @@ export default function movieItem({ Title, Year, isSelected }) {
 movieItem.propTypes = {
   Title: PropTypes.string.isRequired,
   Year: PropTypes.string.isRequired,
-  isSelected: PropTypes.bool
+  isSelected: PropTypes.bool,
+  getMovieDetail: PropTypes.func.isRequired
 };
 
 movieItem.defaultProps = {
