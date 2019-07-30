@@ -6,25 +6,31 @@ import {
 } from '../actions/list';
 
 export default function(searchTerm = '', page = 1) {
-  return dispatch => {
-    dispatch({ type: FETCHING_MOVIES, payload: { searchTerm, page } });
+  return async dispatch => {
+    dispatch({ type: FETCHING_MOVIES });
 
-    makeAPIRequest({ s: searchTerm, page: page })
-      .then(response => {
-        if (!response.data.Error) {
-          dispatch({
-            type: FETCHING_MOVIES_SUCCESS,
-            payload: { response: response.data, page, searchTerm }
-          });
-        } else {
-          throw response.data;
-        }
-      })
-      .catch(err => {
-        dispatch({
-          type: FETCHING_MOVIES_FAILURE,
-          payload: err
-        });
+    try {
+      const response = await makeAPIRequest({ s: searchTerm, page: page });
+
+      if (response.data.Error) {
+        throw response.data;
+      }
+
+      dispatch({
+        type: FETCHING_MOVIES_SUCCESS,
+        payload: { response: response.data, page, searchTerm }
       });
+
+      return;
+    } catch (error) {
+      dispatch({
+        type: FETCHING_MOVIES_FAILURE,
+        payload: {
+          error: error.Error
+            ? error.Error
+            : 'something went wrong with the request'
+        }
+      });
+    }
   };
 }

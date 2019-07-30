@@ -28,7 +28,8 @@ describe('movieList reducer', () => {
         payload: {
           response: {
             Search: [{ movie: 1 }, { movie: 2 }, { movie: 3 }],
-            totalResults: 1234
+            totalResults: 1234,
+            searchTerm: 'star wars'
           },
           page: 2
         }
@@ -42,7 +43,9 @@ describe('movieList reducer', () => {
         loadingMovies: false,
         items: action.payload.response.Search,
         totalCount: action.payload.response.totalResults,
-        currentPage: action.payload.page
+        currentPage: action.payload.page,
+        searchTerm: action.payload.searchTerm,
+        error: false
       });
     });
   });
@@ -54,7 +57,7 @@ describe('movieList reducer', () => {
     before(() => {
       action = {
         type: 'FETCHING_MOVIES_FAILURE',
-        payload: { error: 'some error' }
+        payload: { Error: 'some error' }
       };
       returnedState = movieListReducer(initialState, action);
     });
@@ -63,7 +66,31 @@ describe('movieList reducer', () => {
       expect(returnedState).to.deep.eq({
         ...initialState,
         loadingMovies: false,
-        listError: true
+        error: action.payload.error,
+        totalCount: 0,
+        currentPage: 0
+      });
+    });
+  });
+
+  describe('when receiving CLEAR_RESULTS action', () => {
+    let action;
+    let returnedState;
+
+    before(() => {
+      action = {
+        type: 'CLEAR_RESULTS'
+      };
+      returnedState = movieListReducer(initialState, action);
+    });
+
+    it('returns the expected state', () => {
+      expect(returnedState).to.deep.eq({
+        ...initialState,
+        error: false,
+        currentPage: 0,
+        totalCount: 0,
+        items: []
       });
     });
   });

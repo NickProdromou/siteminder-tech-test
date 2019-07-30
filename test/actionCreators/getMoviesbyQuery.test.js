@@ -4,8 +4,6 @@ import sinon from 'sinon';
 noCallThru();
 
 const makeAPIRequestStub = sinon.stub();
-const thenStub = sinon.stub();
-const catchStub = sinon.stub();
 
 const getMoviesByQuery = proxyquire(
   '../../src/actionCreators/getMoviesByQuery',
@@ -16,8 +14,6 @@ const getMoviesByQuery = proxyquire(
 
 function resetStubs() {
   makeAPIRequestStub.reset();
-  thenStub.reset();
-  catchStub.reset();
 }
 
 describe('getMoviesByQuery action creator', () => {
@@ -30,6 +26,7 @@ describe('getMoviesByQuery action creator', () => {
     before(() => {
       dispatcher = sinon.stub();
       searchTerm = 'star wars';
+      page = 2;
       response = {
         data: {
           items: [{ title: 'a new hope' }]
@@ -37,13 +34,7 @@ describe('getMoviesByQuery action creator', () => {
       };
       page = 2;
 
-      makeAPIRequestStub.returnsThis();
-
-      makeAPIRequestStub.withArgs({ s: searchTerm }).returns({
-        then: thenStub,
-        catch: catchStub
-      });
-      thenStub.callsArgWith(0, response).returnsThis();
+      makeAPIRequestStub.withArgs({ s: searchTerm, page }).resolves(response);
 
       getMoviesByQuery(searchTerm, page)(dispatcher);
     });
@@ -51,13 +42,15 @@ describe('getMoviesByQuery action creator', () => {
     after(resetStubs);
 
     it('calls the dispatcher with the FETCHING_MOVIES action', () => {
-      expect(dispatcher).to.be.calledWith({ type: 'FETCHING_MOVIES' });
+      expect(dispatcher.firstCall).to.be.calledWith({
+        type: 'FETCHING_MOVIES'
+      });
     });
 
     it('calls the dispatcher with the FETCHING_MOVIES_SUCCESS action, with the repsonse data and page as payload', () => {
-      expect(dispatcher).to.be.calledWith({
+      expect(dispatcher.secondCall).to.be.calledWith({
         type: 'FETCHING_MOVIES_SUCCESS',
-        payload: { response: response.data, page }
+        payload: { response: response.data, page, searchTerm }
       });
     });
   });
@@ -66,36 +59,66 @@ describe('getMoviesByQuery action creator', () => {
     let searchTerm;
     let page;
     let dispatcher;
-    let error;
+    let response;
 
     before(() => {
       dispatcher = sinon.stub();
       searchTerm = 'dhfgiundfgojsdngjdg something that doesnt exist';
-      error = {
-        text: 'something went wrong'
+      response = {
+        data: { Error: 'something went wrong' }
       };
       page = 2;
 
-      makeAPIRequestStub.returnsThis();
-
-      makeAPIRequestStub.withArgs({ s: searchTerm }).returns({
-        then: thenStub,
-        catch: catchStub
-      });
-      thenStub.returnsThis();
-      catchStub.callsArgWith(0, error).returnsThis();
+      makeAPIRequestStub.withArgs({ s: searchTerm, page }).resolves(response);
 
       getMoviesByQuery(searchTerm, page)(dispatcher);
     });
 
+    after(resetStubs);
+
     it('calls the dispatcher with the FETCHING_MOVIES action', () => {
-      expect(dispatcher).to.be.calledWith({ type: 'FETCHING_MOVIES' });
+      expect(dispatcher.firstCall).to.be.calledWith({
+        type: 'FETCHING_MOVIES'
+      });
     });
 
-    it('makeAPIRequest calls dispatcher with FETCHING_MOVIES_FAILURE action and error as payload', () => {
-      expect(dispatcher).to.be.calledWith({
+    it('calls dispatcher with FETCHING_MOVIES_FAILURE action and error as payload', () => {
+      expect(dispatcher.secondCall).to.be.calledWith({
         type: 'FETCHING_MOVIES_FAILURE',
-        payload: { error }
+        payload: { error: response.data.Error }
+      });
+    });
+  });
+
+  describe('when makeAPIRequest throws an error', () => {
+    let searchTerm;
+    let page;
+    let dispatcher;
+    let error;
+
+    before(() => {
+      searchTerm = 'abc';
+      page = 2;
+      dispatcher = sinon.stub();
+      error = new Error('something went wrong');
+
+      makeAPIRequestStub.withArgs({ s: searchTerm, page }).rejects(error);
+
+      getMoviesByQuery(searchTerm, page)(dispatcher);
+    });
+
+    after(resetStubs);
+
+    it('calls the dispatcher with the FETCHING_MOVIES action', () => {
+      expect(dispatcher.firstCall).to.be.calledWith({
+        type: 'FETCHING_MOVIES'
+      });
+    });
+
+    it('calls dispatcher with FETCHING_MOVIES_FAILURE action and error as payload', () => {
+      expect(dispatcher.secondCall).to.be.calledWith({
+        type: 'FETCHING_MOVIES_FAILURE',
+        payload: { error: 'something went wrong with the request' }
       });
     });
   });

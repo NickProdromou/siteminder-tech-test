@@ -36,7 +36,7 @@ export default function(state = initialState, action) {
     }
 
     case FETCHING_MOVIES_FAILURE: {
-      const { Error: error } = action.payload;
+      const { error } = action.payload;
 
       return {
         ...state,
