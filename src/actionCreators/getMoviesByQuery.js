@@ -7,18 +7,24 @@ import {
 
 export default function(searchTerm = '', page = 1) {
   return dispatch => {
-    dispatch({ type: FETCHING_MOVIES });
-    console.log(searchTerm, page);
+    dispatch({ type: FETCHING_MOVIES, payload: { searchTerm, page } });
 
     makeAPIRequest({ s: searchTerm, page: page })
       .then(response => {
-        dispatch({
-          type: FETCHING_MOVIES_SUCCESS,
-          payload: { response: response.data, page, searchTerm }
-        });
+        if (!response.data.Error) {
+          dispatch({
+            type: FETCHING_MOVIES_SUCCESS,
+            payload: { response: response.data, page, searchTerm }
+          });
+        } else {
+          throw response.data;
+        }
       })
       .catch(err => {
-        dispatch({ type: FETCHING_MOVIES_FAILURE, payload: { error: err } });
+        dispatch({
+          type: FETCHING_MOVIES_FAILURE,
+          payload: err
+        });
       });
   };
 }
