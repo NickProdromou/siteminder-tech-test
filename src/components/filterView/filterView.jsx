@@ -1,27 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
+  clearResults,
   getMoviesByQuery,
   getNextPage,
-  getPreviousPage,
-  clearResults
+  getPreviousPage
 } from '../../actionCreators';
+import {
+  getErrorState,
+  getLoadingState,
+  getMovieItems,
+  getPageNumber,
+  getSearchTerm,
+  getTotalCount,
+  showNextPageButton,
+  showPreviousPageButton
+} from '../../selectors';
+import PageNavigation from '../pageNavigation';
 import ResultsList from '../resultsList';
 import Search from '../search';
 import styles from './filterView.module.scss';
-import PageNavigation from '../pageNavigation';
-
-import {
-  showNextPageButton,
-  showPreviousPageButton,
-  getTotalCount,
-  getPageNumber,
-  getSearchTerm,
-  getMovieItems,
-  getLoadingState,
-  getErrorState
-} from '../../selectors';
 
 export function DumbFilterView({
   onInput,
@@ -58,11 +58,21 @@ export function DumbFilterView({
   );
 }
 
-DumbFilterView.propTypes = {};
+DumbFilterView.propTypes = {
+  onInput: PropTypes.func.isRequired,
+  clearResults: PropTypes.func.isRequired,
+  items: PropTypes.arrayOf(PropTypes.Object),
+  loading: PropTypes.bool,
+  error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  hasNextPage: PropTypes.bool.isRequired,
+  hasPrevPage: PropTypes.bool.isRequired,
+  getNexPage: PropTypes.func.isRequired,
+  getPrevPage: PropTypes.func.isRequired,
+  searchTerm: PropTypes.string.isRequired,
+  totalCount: PropTypes.number.isRequired
+};
 
 function mapStateToProps(state) {
-  console.log(getSearchTerm(state));
-
   return {
     items: getMovieItems(state),
     loading: getLoadingState(state),
