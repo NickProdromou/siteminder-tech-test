@@ -1,6 +1,6 @@
 import React from 'react';
 import Breakpoint from 'react-socks';
-import DetailView from '../detailView';
+import MovieDetail from '../movieDetail';
 import Modal from '../modal';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -24,12 +24,12 @@ export function DumbDetailRenderer(props) {
         {isMovieSelected && (
           <Modal
             onClose={() => clearSelection(selectedMovieId)}
-            render={() => <DetailView {...props} />}
+            render={() => <MovieDetail {...props} />}
           />
         )}
       </Breakpoint>
       <Breakpoint medium up>
-        {isMovieSelected && <DetailView {...props} />}
+        {isMovieSelected && <MovieDetail {...props} />}
       </Breakpoint>
     </React.Fragment>
   );
