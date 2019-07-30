@@ -1,37 +1,98 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
+import {
+  clearResults,
+  getMoviesByQuery,
+  getNextPage,
+  getPreviousPage
+} from '../../actionCreators';
+import {
+  getErrorState,
+  getLoadingState,
+  getMovieItems,
+  getPageNumber,
+  getSearchTerm,
+  getTotalCount,
+  showNextPageButton,
+  showPreviousPageButton
+} from '../../selectors';
+import PageNavigation from '../pageNavigation';
+import ResultsList from '../resultsList';
 import Search from '../search';
-import MovieItem from '../movieItem';
-import { getMoviesByQuery } from '../../actionCreators';
 import styles from './filterView.module.scss';
 
-export function DumbFilterView({ onInput, items }) {
+export function DumbFilterView({
+  onInput,
+  clearResults,
+  items,
+  loading,
+  error,
+  hasNextPage,
+  hasPrevPage,
+  pageNumber,
+  totalCount,
+  getNextPage,
+  getPrevPage,
+  searchTerm
+}) {
   return (
-    <div>
+    <div className={styles.Root}>
       <div className={styles.searchContainer}>
-        <Search onInput={onInput} />
+        <Search onInput={onInput} clearResults={clearResults} />
       </div>
-      <p>paginatedList</p>
-      {items && items.map(item => <MovieItem {...item} />)}
+      <div className={styles.listContainer}>
+        <ResultsList results={items} loading={loading} error={error} />
+      </div>
+      <PageNavigation
+        hasNextPage={hasNextPage}
+        hasPrevPage={hasPrevPage}
+        pageNumber={pageNumber}
+        totalCount={totalCount}
+        getNextPage={getNextPage}
+        getPrevPage={getPrevPage}
+        searchTerm={searchTerm}
+      />
     </div>
   );
 }
 
-DumbFilterView.propTypes = {};
+DumbFilterView.propTypes = {
+  onInput: PropTypes.func.isRequired,
+  clearResults: PropTypes.func.isRequired,
+  items: PropTypes.arrayOf(PropTypes.object),
+  loading: PropTypes.bool,
+  error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  hasNextPage: PropTypes.bool.isRequired,
+  hasPrevPage: PropTypes.bool.isRequired,
+  getNextPage: PropTypes.func.isRequired,
+  getPrevPage: PropTypes.func.isRequired,
+  searchTerm: PropTypes.string.isRequired,
+  totalCount: PropTypes.string.isRequired
+};
 
 function mapStateToProps(state) {
-  const { movieList } = state;
-
   return {
-    items: movieList.items
+    items: getMovieItems(state),
+    loading: getLoadingState(state),
+    error: getErrorState(state),
+    hasNextPage: showNextPageButton(state),
+    hasPrevPage: showPreviousPageButton(state),
+    totalCount: getTotalCount(state),
+    searchTerm: getSearchTerm(state),
+    pageNumber: getPageNumber(state)
   };
 }
 
 function mapDispatchToProps(dispatch) {
   const boundActionCreators = bindActionCreators(
-    { onInput: getMoviesByQuery },
+    {
+      onInput: getMoviesByQuery,
+      clearResults,
+      getNextPage,
+      getPrevPage: getPreviousPage
+    },
     dispatch
   );
 

@@ -1,6 +1,16 @@
 @import '../../style/variables.scss';
 
+.Root {
+  display: flex;
+  flex-direction: column;
+}
+
 .searchContainer {
   display: flex;
   margin: $spacing-xxsmall $spacing-small;
+}
+
+.listContainer {
+  margin: $spacing-xxsmall $spacing-small;
+  flex: 1 0 auto;
 }

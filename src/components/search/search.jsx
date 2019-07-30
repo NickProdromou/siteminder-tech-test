@@ -29,9 +29,15 @@ export default class Search extends Component {
 
   setSearchTerm = debounce(() => {
     const { searchText } = this.state;
-    const { onInput } = this.props;
+    const { onInput, clearResults } = this.props;
 
-    onInput(searchText);
+    if (searchText !== '') {
+      onInput(searchText);
+
+      return;
+    }
+
+    clearResults();
   }, 1000);
 
   render() {

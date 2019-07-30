@@ -1,0 +1,28 @@
+@import '../../style/variables.scss';
+
+.Root {
+  display: flex;
+  justify-content: space-between;
+}
+
+.withoutPrevButton {
+  padding-left: $spacing-xlarge;
+}
+
+.withoutNextButton {
+  padding-right: $spacing-xlarge;
+}
+
+.listInfo {
+  display: flex;
+  flex-direction: column;
+  font-family: $font-poppins;
+  align-items: center;
+  flex: 1 0 auto;
+}
+
+.controlButton {
+  display: block;
+  border: none;
+  background-color: none;
+}

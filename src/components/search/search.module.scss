@@ -1,7 +1,7 @@
 @import '../../style/variables.scss';
 
 .Root {
-  padding: $spacing-small 0;
+  padding: $spacing-small 0 $spacing-small $spacing-xlarge;
   display: flex;
   position: relative;
   border: 1px solid $color-baltic-sea;
@@ -13,7 +13,6 @@
   outline: none;
   border: 0;
   flex: 1 0 auto;
-  padding-left: $spacing-xlarge;
   align-items: baseline;
   font-family: $font-poppins;
 
@@ -25,4 +24,6 @@
 .searchIcon {
   position: absolute;
   left: 0;
+  top: 10px;
+  left: 4px;
 }

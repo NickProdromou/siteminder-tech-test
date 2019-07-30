@@ -1,17 +1,18 @@
 import {
   FETCHING_MOVIES,
   FETCHING_MOVIES_SUCCESS,
-  FETCHING_MOVIES_FAILURE
+  FETCHING_MOVIES_FAILURE,
+  CLEAR_RESULTS
 } from '../actions/list';
 
 export const initialState = {
   searchTerm: '',
   items: [],
-  totalCount: 0,
-  currentpage: 0,
+  totalCount: '0',
+  currentPage: 0,
   loadingMovies: false,
   loadingMovieDetail: false,
-  listError: false
+  error: false
 };
 
 export default function(state = initialState, action) {
@@ -21,23 +22,40 @@ export default function(state = initialState, action) {
     }
 
     case FETCHING_MOVIES_SUCCESS: {
-      const { response, page } = action.payload;
+      const { response, page, searchTerm } = action.payload;
 
       return {
         ...state,
         loadingMovies: false,
         items: response.Search,
         totalCount: response.totalResults,
-        currentPage: page
+        currentPage: page,
+        searchTerm,
+        error: false
       };
     }
 
     case FETCHING_MOVIES_FAILURE: {
       const { error } = action.payload;
 
-      console.error({ FETCHING_MOVIES_FAILURE: error });
+      return {
+        ...state,
+        loadingMovies: false,
+        items: [],
+        error,
+        currentPage: 0,
+        totalCount: 0
+      };
+    }
 
-      return { ...state, loadingMovies: false, items: [], listError: true };
+    case CLEAR_RESULTS: {
+      return {
+        ...state,
+        error: false,
+        currentPage: 0,
+        totalCount: 0,
+        items: []
+      };
     }
 
     default:

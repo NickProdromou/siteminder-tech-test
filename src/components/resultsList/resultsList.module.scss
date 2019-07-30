@@ -1,0 +1,23 @@
+@import '../../style//variables.scss';
+
+.Root {
+  display: flex;
+  flex-direction: column;
+}
+
+.itemList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.listContainer {
+  flex: 1 0 auto;
+  font-family: $font-poppins;
+}
+
+.loadingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
