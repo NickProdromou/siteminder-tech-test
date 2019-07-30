@@ -8,7 +8,7 @@ import {
 export const initialState = {
   searchTerm: '',
   items: [],
-  totalCount: 0,
+  totalCount: '0',
   currentPage: 0,
   loadingMovies: false,
   loadingMovieDetail: false,

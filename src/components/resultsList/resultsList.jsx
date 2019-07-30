@@ -7,7 +7,9 @@ import styles from './resultsList.module.scss';
 
 export default class ResultsList extends Component {
   static propTypes = {
-    ItemComponent: PropTypes.func
+    loading: PropTypes.bool,
+    results: PropTypes.arrayOf(PropTypes.object),
+    error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
   };
 
   renderLoading() {
@@ -41,7 +43,7 @@ export default class ResultsList extends Component {
     return (
       <div className={styles.Root}>
         <div className={styles.listContainer}>
-          {error && <p>{error}</p>}
+          {error && <p data-test-id="results-list-error">{error}</p>}
           {loading ? this.renderLoading() : this.renderList()}
         </div>
       </div>

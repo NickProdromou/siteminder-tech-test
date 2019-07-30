@@ -61,15 +61,15 @@ export function DumbFilterView({
 DumbFilterView.propTypes = {
   onInput: PropTypes.func.isRequired,
   clearResults: PropTypes.func.isRequired,
-  items: PropTypes.arrayOf(PropTypes.Object),
+  items: PropTypes.arrayOf(PropTypes.object),
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   hasNextPage: PropTypes.bool.isRequired,
   hasPrevPage: PropTypes.bool.isRequired,
-  getNexPage: PropTypes.func.isRequired,
+  getNextPage: PropTypes.func.isRequired,
   getPrevPage: PropTypes.func.isRequired,
   searchTerm: PropTypes.string.isRequired,
-  totalCount: PropTypes.number.isRequired
+  totalCount: PropTypes.string.isRequired
 };
 
 function mapStateToProps(state) {
