@@ -11,8 +11,6 @@ export default function movieItem({
   getMovieDetail,
   clearMovieDetail
 }) {
-  console.log(clearMovieDetail);
-
   return (
     <article
       className={styles.Root}
