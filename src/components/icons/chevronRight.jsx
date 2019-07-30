@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function CloseIcon({ className }) {
+export default function ChevronRight({ className }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,6 +16,6 @@ export default function CloseIcon({ className }) {
   );
 }
 
-CloseIcon.propTypes = {
+ChevronRight.propTypes = {
   className: PropTypes.string
 };
