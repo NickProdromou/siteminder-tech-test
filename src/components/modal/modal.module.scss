@@ -1,1 +1,24 @@
-/* todo */
+@import '../../style/variables.scss';
+
+.Root {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background: white;
+}
+
+.modalContainer {
+  border: 1px solid #fff000;
+}
+
+.modalOpen {
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+.modalHeader {
+  display: flex;
+  padding: $spacing-medium;
+}

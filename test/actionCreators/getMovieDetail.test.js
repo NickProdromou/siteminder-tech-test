@@ -4,8 +4,6 @@ import sinon from 'sinon';
 noCallThru();
 
 const makeAPIRequestStub = sinon.stub();
-const thenStub = sinon.stub();
-const catchStub = sinon.stub();
 
 const getMovieDetail = proxyquire('../../src/actionCreators/getMovieDetail', {
   '../api': makeAPIRequestStub
@@ -13,10 +11,7 @@ const getMovieDetail = proxyquire('../../src/actionCreators/getMovieDetail', {
 
 function resetStubs() {
   makeAPIRequestStub.reset();
-  thenStub.reset();
-  catchStub.reset();
 }
-
 describe('getMovieDetail action creator', () => {
   describe('when passed a movieId', () => {
     describe('and the repsonse is successful', () => {
@@ -31,28 +26,30 @@ describe('getMovieDetail action creator', () => {
           data: { movie: 'some movie' }
         };
 
-        makeAPIRequestStub.returnsThis();
+        makeAPIRequestStub
+          .withArgs({ i: movieId, plot: 'full' })
+          .resolves(response);
 
-        makeAPIRequestStub.withArgs({ i: movieId, plot: 'full' }).returns({
-          then: thenStub,
-          catch: catchStub
-        });
-        thenStub.callsArgWith(0, response).returnsThis();
-        const func = getMovieDetail(movieId);
-
-        func(dispatcher);
+        getMovieDetail(movieId)(dispatcher);
       });
 
       after(resetStubs);
 
       it('dispatcher dispatches the GET_MOVIE_DETAIL_LOADING action', () => {
-        expect(dispatcher).to.be.calledWith({
+        expect(dispatcher.firstCall).to.be.calledWith({
           type: 'GET_MOVIE_DETAIL_LOADING'
         });
       });
 
+      it('dispatcher calls SET_SELECTED_MOVIE action with movie id as payload', () => {
+        expect(dispatcher.secondCall).to.be.calledWith({
+          type: 'SET_SELECTED_MOVIE',
+          payload: { movieId }
+        });
+      });
+
       it('makeAPIRequest calls dispatch with GET_MOVIE_DETAIL_SUCCESS action and response data as payload', () => {
-        expect(dispatcher).to.be.calledWith({
+        expect(dispatcher.thirdCall).to.be.calledWith({
           type: 'GET_MOVIE_DETAIL_SUCCESS',
           payload: response.data
         });
@@ -68,20 +65,18 @@ describe('getMovieDetail action creator', () => {
         dispatcher = sinon.stub();
         movieId = 1234;
         error = {
-          text: 'something went wrong'
+          data: {
+            Error: 'something went wrong'
+          }
         };
 
         makeAPIRequestStub.returnsThis();
 
-        makeAPIRequestStub.withArgs({ i: movieId, plot: 'full' }).returns({
-          then: thenStub,
-          catch: catchStub
-        });
-        thenStub.returnsThis();
-        catchStub.callsArgWith(0, error);
-        const func = getMovieDetail(movieId);
+        makeAPIRequestStub
+          .withArgs({ i: movieId, plot: 'full' })
+          .resolves(error);
 
-        func(dispatcher);
+        getMovieDetail(movieId)(dispatcher);
       });
 
       after(resetStubs);
@@ -95,7 +90,7 @@ describe('getMovieDetail action creator', () => {
       it('makeAPIRequest calls dispatch with GET_MOVIE_DETAIL_FAILURE action and error as payload ', () => {
         expect(dispatcher).to.be.calledWith({
           type: 'GET_MOVIE_DETAIL_FAILURE',
-          payload: { error }
+          payload: { error: error.data.Error }
         });
       });
     });
@@ -106,9 +101,7 @@ describe('getMovieDetail action creator', () => {
 
     before(() => {
       dispatcher = sinon.stub();
-      const func = getMovieDetail();
-
-      func(dispatcher);
+      const func = getMovieDetail()(dispatcher);
     });
 
     after(resetStubs);
@@ -122,6 +115,39 @@ describe('getMovieDetail action creator', () => {
 
     it('makeAPIRrequest does not get called', () => {
       expect(makeAPIRequestStub).not.to.be.called;
+    });
+  });
+
+  describe('when an error is thrown', () => {
+    let movieId;
+    let response;
+    let dispatcher;
+
+    before(() => {
+      dispatcher = sinon.stub();
+      movieId = 1234;
+      response = {
+        data: { movie: 'some movie' }
+      };
+
+      makeAPIRequestStub.withArgs({ i: movieId, plot: 'full' }).rejects();
+
+      getMovieDetail(movieId)(dispatcher);
+    });
+
+    after(resetStubs);
+
+    it('dispatcher dispatches the GET_MOVIE_DETAIL_LOADING action', () => {
+      expect(dispatcher.firstCall).to.be.calledWith({
+        type: 'GET_MOVIE_DETAIL_LOADING'
+      });
+    });
+
+    it('dispatcher dispatches the GET_MOVIE_DETAIL_FAILURE action with some error text', () => {
+      expect(dispatcher).to.be.calledWith({
+        type: 'GET_MOVIE_DETAIL_FAILURE',
+        payload: { error: 'something went wrong with the request' }
+      });
     });
   });
 });

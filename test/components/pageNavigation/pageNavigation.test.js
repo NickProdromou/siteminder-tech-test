@@ -44,13 +44,13 @@ describe('<PageNavigation/>', () => {
     });
 
     it('renders the page number from the props', () => {
-      expect(wrapper.find('[data-test-id="pageNumber"]').text()).to.include(
+      expect(wrapper.find('[data-testid="pageNumber"]').text()).to.include(
         testProps.pageNumber
       );
     });
 
     it('renders the total count from the props', () => {
-      expect(wrapper.find('[data-test-id="totalCount"]').text()).to.include(
+      expect(wrapper.find('[data-testid="totalCount"]').text()).to.include(
         testProps.totalCount
       );
     });
@@ -81,7 +81,7 @@ describe('<PageNavigation/>', () => {
         }
       });
 
-      wrapper.find('[data-test-id="prev-page-button"]').simulate('click');
+      wrapper.find('[data-testid="prev-page-button"]').simulate('click');
     });
 
     it('calls the getPreviousPage prop as a function passing the page number and searchTerm', () => {
@@ -109,7 +109,7 @@ describe('<PageNavigation/>', () => {
         }
       });
 
-      wrapper.find('[data-test-id="next-page-button"]').simulate('click');
+      wrapper.find('[data-testid="next-page-button"]').simulate('click');
     });
 
     it('calls the getNextPage prop as a function passing the page number and searchTerm', () => {
@@ -143,13 +143,13 @@ describe('<PageNavigation/>', () => {
     });
 
     it('renders the page number from the props', () => {
-      expect(wrapper.find('[data-test-id="pageNumber"]').text()).to.include(
+      expect(wrapper.find('[data-testid="pageNumber"]').text()).to.include(
         testProps.pageNumber
       );
     });
 
     it('renders the total count from the props', () => {
-      expect(wrapper.find('[data-test-id="totalCount"]').text()).to.include(
+      expect(wrapper.find('[data-testid="totalCount"]').text()).to.include(
         testProps.totalCount
       );
     });
@@ -186,13 +186,13 @@ describe('<PageNavigation/>', () => {
     });
 
     it('renders the page number from the props', () => {
-      expect(wrapper.find('[data-test-id="pageNumber"]').text()).to.include(
+      expect(wrapper.find('[data-testid="pageNumber"]').text()).to.include(
         testProps.pageNumber
       );
     });
 
     it('renders the total count from the props', () => {
-      expect(wrapper.find('[data-test-id="totalCount"]').text()).to.include(
+      expect(wrapper.find('[data-testid="totalCount"]').text()).to.include(
         testProps.totalCount
       );
     });
@@ -229,11 +229,11 @@ describe('<PageNavigation/>', () => {
     });
 
     it('does not render a page number', () => {
-      expect(wrapper.find('[data-test-id="pageNumber"]').exists()).to.be.false;
+      expect(wrapper.find('[data-testid="pageNumber"]').exists()).to.be.false;
     });
 
     it('renders the total count from the props', () => {
-      expect(wrapper.find('[data-test-id="totalCount"]').text()).to.include(
+      expect(wrapper.find('[data-testid="totalCount"]').text()).to.include(
         testProps.totalCount
       );
     });

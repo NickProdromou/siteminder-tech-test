@@ -15,7 +15,7 @@
   }
 
   @include mq($from: medium) {
-    flex: 0 0 25%;
+    flex: 0 0 350px;
   }
 }
 
@@ -26,5 +26,7 @@
 
   @include mq($from: medium) {
     flex: 1 0 auto;
+    max-width: 1080px;
+    padding: $spacing-large;
   }
 }

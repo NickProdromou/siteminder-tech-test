@@ -51,7 +51,7 @@ export default class Search extends Component {
           value={searchText}
           onChange={this.handleChange}
           placeholder="Search movies"
-          data-test-id="searchInput"
+          data-testid="searchInput"
         />
         <SearchIcon className={styles.searchIcon} />
       </div>

@@ -73,6 +73,110 @@ describe('movieList reducer', () => {
     });
   });
 
+  describe('when receiving SET_SELECTED_MOVIE', () => {
+    let action;
+    let id;
+    let state;
+    let returnedState;
+
+    before(() => {
+      id = 1234;
+
+      action = {
+        type: 'SET_SELECTED_MOVIE',
+        payload: { movieId: id }
+      };
+
+      state = {
+        ...initialState,
+        items: [
+          { imdbID: 1, text: 'foo' },
+          { imdbID: 2, text: 'bar' },
+          { imdbID: 3, text: 'baz' },
+          { imdbID: id, text: 'qux' },
+          { imdbID: 5, text: 'flub' },
+          { imdbID: 6, text: 'mlem' },
+          { imdbID: 7, text: 'schlop' },
+          { imdbID: 8, text: 'dig' },
+          { imdbID: 9, text: 'grep' },
+          { imdbID: 10, text: 'yep' }
+        ]
+      };
+
+      returnedState = movieListReducer(state, action);
+    });
+
+    it('returns the expected state', () => {
+      expect(returnedState).to.deep.eq({
+        ...state,
+        items: [
+          { imdbID: 1, text: 'foo', isSelected: false },
+          { imdbID: 2, text: 'bar', isSelected: false },
+          { imdbID: 3, text: 'baz', isSelected: false },
+          { imdbID: id, text: 'qux', isSelected: true },
+          { imdbID: 5, text: 'flub', isSelected: false },
+          { imdbID: 6, text: 'mlem', isSelected: false },
+          { imdbID: 7, text: 'schlop', isSelected: false },
+          { imdbID: 8, text: 'dig', isSelected: false },
+          { imdbID: 9, text: 'grep', isSelected: false },
+          { imdbID: 10, text: 'yep', isSelected: false }
+        ]
+      });
+    });
+  });
+
+  describe('when receiving CLEAR_SELECTED_MOVIE', () => {
+    let action;
+    let id;
+    let state;
+    let returnedState;
+
+    before(() => {
+      id = 1234;
+
+      action = {
+        type: 'CLEAR_SELECTED_MOVIE',
+        payload: { movieId: id }
+      };
+
+      state = {
+        ...initialState,
+        items: [
+          { imdbID: 1, text: 'foo', isSelected: false },
+          { imdbID: 2, text: 'bar', isSelected: false },
+          { imdbID: 3, text: 'baz', isSelected: false },
+          { imdbID: id, text: 'qux', isSelected: true },
+          { imdbID: 5, text: 'flub', isSelected: false },
+          { imdbID: 6, text: 'mlem', isSelected: false },
+          { imdbID: 7, text: 'schlop', isSelected: false },
+          { imdbID: 8, text: 'dig', isSelected: false },
+          { imdbID: 9, text: 'grep', isSelected: false },
+          { imdbID: 10, text: 'yep', isSelected: false }
+        ]
+      };
+
+      returnedState = movieListReducer(state, action);
+    });
+
+    it('returns the expected state', () => {
+      expect(returnedState).to.deep.eq({
+        ...state,
+        items: [
+          { imdbID: 1, text: 'foo', isSelected: false },
+          { imdbID: 2, text: 'bar', isSelected: false },
+          { imdbID: 3, text: 'baz', isSelected: false },
+          { imdbID: id, text: 'qux', isSelected: false },
+          { imdbID: 5, text: 'flub', isSelected: false },
+          { imdbID: 6, text: 'mlem', isSelected: false },
+          { imdbID: 7, text: 'schlop', isSelected: false },
+          { imdbID: 8, text: 'dig', isSelected: false },
+          { imdbID: 9, text: 'grep', isSelected: false },
+          { imdbID: 10, text: 'yep', isSelected: false }
+        ]
+      });
+    });
+  });
+
   describe('when receiving CLEAR_RESULTS action', () => {
     let action;
     let returnedState;

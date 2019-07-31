@@ -21,14 +21,19 @@ export default class ResultsList extends Component {
   }
 
   renderList() {
-    const { results } = this.props;
+    const { results, getMovieDetail, clearMovieDetail } = this.props;
 
     return (
       (Array.isArray(results) && results.length && (
         <ul className={styles.itemList}>
           {results.map(item => (
-            <li key={item.id}>
-              <MovieItem key={item.id} {...item} />
+            <li key={item.imdbID}>
+              <MovieItem
+                key={item.imdbID}
+                {...item}
+                getMovieDetail={getMovieDetail}
+                clearMovieDetail={clearMovieDetail}
+              />
             </li>
           ))}
         </ul>
@@ -43,7 +48,7 @@ export default class ResultsList extends Component {
     return (
       <div className={styles.Root}>
         <div className={styles.listContainer}>
-          {error && <p data-test-id="results-list-error">{error}</p>}
+          {error && <p data-testid="results-list-error">{error}</p>}
           {loading ? this.renderLoading() : this.renderList()}
         </div>
       </div>

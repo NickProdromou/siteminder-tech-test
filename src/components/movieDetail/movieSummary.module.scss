@@ -1,0 +1,19 @@
+@import '../../style/variables.scss';
+
+.Root {
+  display: flex;
+  flex-direction: column;
+}
+
+.movieStats {
+  display: flex;
+  flex-direction: column;
+}
+
+.summaryHeading {
+  font-weight: bold;
+}
+
+.statText {
+  font: $font-poppins;
+}

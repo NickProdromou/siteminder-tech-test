@@ -38,7 +38,8 @@ describe('movieDetail reducer', () => {
       expect(returnedState).to.deep.eq({
         ...initialState,
         loading: false,
-        selectedMovie: action.payload
+        selectedMovie: action.payload,
+        isMovieSelected: true
       });
     });
   });
@@ -59,7 +60,28 @@ describe('movieDetail reducer', () => {
       expect(returnedState).to.deep.eq({
         ...initialState,
         loading: false,
-        selectedMovieError: true
+        error: action.payload.error
+      });
+    });
+  });
+
+  describe('when receiving CLEAR_SELECTED_MOVIE action', () => {
+    let action;
+    let returnedState;
+
+    before(() => {
+      action = {
+        type: 'CLEAR_SELECTED_MOVIE'
+      };
+      returnedState = movieDetailReducer(initialState, action);
+    });
+
+    it('returns the expected state', () => {
+      expect(returnedState).to.deep.eq({
+        ...initialState,
+        loading: false,
+        error: false,
+        isMovieSelected: false
       });
     });
   });
