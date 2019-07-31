@@ -1,4 +1,4 @@
-@import '../../style//variables.scss';
+@import '../../style/variables.scss';
 
 .Root {
   display: flex;
@@ -19,19 +19,6 @@
   font-size: 0.8rem;
   line-height: 1.6;
   max-width: 550px;
-}
-
-.movieStats {
-  display: flex;
-  flex-direction: column;
-}
-
-.statTitle {
-  font-weight: bold;
-}
-
-.statText {
-  font: $font-poppins;
 }
 
 .imagePane {

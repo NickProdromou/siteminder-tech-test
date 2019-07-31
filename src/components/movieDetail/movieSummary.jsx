@@ -2,29 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './movieSummary.module.scss';
 
-export default function movieSummary({ language, actors, duration }) {
-  console.log(language, actors, duration);
+export default function movieSummary(props) {
+  const summaryItems = Object.keys(props).map(propName => {
+    const testId = `movie-summary-${propName}`;
 
-  return (
-    <div className={styles.movieStats}>
-      <span>
-        <b className={styles.statTitle}>Language: </b>
-        {language}
-      </span>
-      <span>
-        <b className={styles.statTitle}>Actors:</b>
-        {actors}
-      </span>
-      <span>
-        <b className={styles.statTitle}>Duration:</b>
-        {duration}
-      </span>
-    </div>
-  );
+    return (
+      (props[propName] && (
+        <span data-test-id={testId} key={testId}>
+          <b className={styles.summaryHeading}>{propName}:</b>
+          {props[propName]}
+        </span>
+      )) ||
+      null
+    );
+  });
+
+  return <div className={styles.Root}>{summaryItems}</div>;
 }
 
 movieSummary.propTypes = {
-  language: PropTypes.string.isRequired,
-  actors: PropTypes.string.isRequired,
-  duration: PropTypes.string.isRequired
+  language: PropTypes.string,
+  actors: PropTypes.string,
+  duration: PropTypes.string
 };
