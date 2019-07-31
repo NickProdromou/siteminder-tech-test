@@ -14,18 +14,22 @@ export default class MovieDetail extends Component {
     language: PropTypes.string.isRequired,
     actors: PropTypes.string.isRequired,
     duration: PropTypes.string.isRequired,
-    error: PropTypes.string.isRequired,
+    error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     loading: PropTypes.bool.isRequired
   };
 
   renderError() {
     const { error } = this.props;
 
-    return <div>{error}</div>;
+    return <div data-testid="movie-detail-error">{error}</div>;
   }
 
   renderLoading() {
-    return <div>{<Spinner />}</div>;
+    return (
+      <div data-testid="movie-detail-loading">
+        <Spinner />
+      </div>
+    );
   }
 
   renderUI() {
@@ -51,9 +55,13 @@ export default class MovieDetail extends Component {
     return (
       <article className={styles.Root}>
         <div className={styles.infoPane}>
-          <h1 className={styles.movieTitle}>{title}</h1>
-          <span>{genres}</span>
-          <p className={styles.plotText}>{plot}</p>
+          <h1 className={styles.movieTitle} data-testid="movie-detail-title">
+            {title}
+          </h1>
+          <span data-testid="movie-detail-genres-text">{genres}</span>
+          <p className={styles.plotText} data-testid="movie-detail-plot-text">
+            {plot}
+          </p>
           <MovieSummary {...summaryProps} />
         </div>
         <div className={styles.imagePane}>
