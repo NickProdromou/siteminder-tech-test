@@ -29,13 +29,13 @@ describe('<MovieItem/>', () => {
     });
 
     it('renders the title text using the props into the correct location', () => {
-      expect(wrapper.find('[data-test-id="title-text"]').text()).to.eq(
+      expect(wrapper.find('[data-testid="title-text"]').text()).to.eq(
         testProps.Title
       );
     });
 
     it('renders the release year using the prop in the correct location', () => {
-      expect(wrapper.find('[data-test-id="release-year-text"]').text()).to.eq(
+      expect(wrapper.find('[data-testid="release-year-text"]').text()).to.eq(
         testProps.Year
       );
     });
@@ -64,13 +64,13 @@ describe('<MovieItem/>', () => {
     });
 
     it('renders the title text using the props into the correct location', () => {
-      expect(wrapper.find('[data-test-id="title-text"]').text()).to.eq(
+      expect(wrapper.find('[data-testid="title-text"]').text()).to.eq(
         testProps.Title
       );
     });
 
     it('renders the release year using the prop in the correct location', () => {
-      expect(wrapper.find('[data-test-id="release-year-text"]').text()).to.eq(
+      expect(wrapper.find('[data-testid="release-year-text"]').text()).to.eq(
         testProps.Year
       );
     });
@@ -104,13 +104,13 @@ describe('<MovieItem/>', () => {
     });
 
     it('renders the title text using the props into the correct location', () => {
-      expect(wrapper.find('[data-test-id="title-text"]').text()).to.eq(
+      expect(wrapper.find('[data-testid="title-text"]').text()).to.eq(
         testProps.Title
       );
     });
 
     it('renders the release year using the prop in the correct location', () => {
-      expect(wrapper.find('[data-test-id="release-year-text"]').text()).to.eq(
+      expect(wrapper.find('[data-testid="release-year-text"]').text()).to.eq(
         testProps.Year
       );
     });
@@ -148,13 +148,13 @@ describe('<MovieItem/>', () => {
     });
 
     it('renders the title text using the props into the correct location', () => {
-      expect(wrapper.find('[data-test-id="title-text"]').text()).to.eq(
+      expect(wrapper.find('[data-testid="title-text"]').text()).to.eq(
         testProps.Title
       );
     });
 
     it('renders the release year using the prop in the correct location', () => {
-      expect(wrapper.find('[data-test-id="release-year-text"]').text()).to.eq(
+      expect(wrapper.find('[data-testid="release-year-text"]').text()).to.eq(
         testProps.Year
       );
     });

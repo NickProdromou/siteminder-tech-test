@@ -36,7 +36,7 @@ describe('<Modal/>', () => {
         props: {
           onClose: sinon.stub(),
           render: () => (
-            <div data-test-id={modalContentTestId}>
+            <div data-testid={modalContentTestId}>
               <InnerComponent />
             </div>
           )
@@ -53,23 +53,23 @@ describe('<Modal/>', () => {
     });
 
     it('creates a portal on the document body', () => {
-      expect(document.querySelector('[data-test-id="modal-mount-node"]')).to
+      expect(document.querySelector('[data-testid="modal-mount-node"]')).to
         .exist;
     });
 
     it('renders the Modal content into the appended div on the document body', () => {
       const mountedNode = document.querySelector(
-        '[data-test-id="modal-mount-node"]'
+        '[data-testid="modal-mount-node"]'
       );
 
-      expect(mountedNode.querySelector(`[data-test-id=${modalContentTestId}]`))
+      expect(mountedNode.querySelector(`[data-testid=${modalContentTestId}]`))
         .to.exist;
     });
 
     it('renders a CloseIcon in a button', () => {
       expect(
         wrapper
-          .find('[data-test-id="modal-close-button"]')
+          .find('[data-testid="modal-close-button"]')
           .find(CloseIconStub)
           .exists()
       ).to.be.true;

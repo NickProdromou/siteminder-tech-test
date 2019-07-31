@@ -22,7 +22,7 @@ describe('<Search/>', () => {
     });
 
     it('renders the input', () => {
-      expect(wrapper.find('[data-test-id="searchInput"]').exists()).to.be.true;
+      expect(wrapper.find('[data-testid="searchInput"]').exists()).to.be.true;
     });
 
     it('renders the <SearchIcon/>', () => {
@@ -41,7 +41,7 @@ describe('<Search/>', () => {
       newStateValue = 'star wars';
 
       wrapper
-        .find('[data-test-id="searchInput"]')
+        .find('[data-testid="searchInput"]')
         .simulate('change', { target: { value: newStateValue } });
     });
 

@@ -111,7 +111,7 @@ describe('<ResultsList/>', () => {
     });
 
     it('renders the error text', () => {
-      expect(wrapper.find('[data-test-id="results-list-error"]').text()).to.eq(
+      expect(wrapper.find('[data-testid="results-list-error"]').text()).to.eq(
         testProps.error
       );
     });

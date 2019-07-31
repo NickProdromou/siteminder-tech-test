@@ -21,7 +21,7 @@ export default class Modal extends Component {
   createMountNode = () => {
     const modalTarget = document.createElement('div');
     modalTarget.classList.add(styles.Root);
-    modalTarget.setAttribute('data-test-id', 'modal-mount-node');
+    modalTarget.setAttribute('data-testid', 'modal-mount-node');
     document.body.appendChild(modalTarget);
 
     this.setState({ mountNode: modalTarget });
@@ -63,11 +63,11 @@ export default class Modal extends Component {
       createPortal(
         <div
           className={styles.modalContainer}
-          data-test-id="modal-root-element"
+          data-testid="modal-root-element"
         >
           <div className={styles.modalHeader}>
             <button
-              data-test-id="modal-close-button"
+              data-testid="modal-close-button"
               onClick={this.handleClose}
             >
               <CloseIcon />

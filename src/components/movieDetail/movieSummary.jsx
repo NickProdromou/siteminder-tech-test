@@ -8,7 +8,7 @@ export default function movieSummary(props) {
 
     return (
       (props[propName] && (
-        <span data-test-id={testId} key={testId}>
+        <span data-testid={testId} key={testId}>
           <b className={styles.summaryHeading}>{propName}:</b>
           {props[propName]}
         </span>

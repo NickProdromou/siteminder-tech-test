@@ -26,7 +26,7 @@ describe('<MovieSummary/>', () => {
     ['language', 'actors', 'duration'].forEach(prop => {
       it(`renders the ${prop} text`, () => {
         expect(
-          wrapper.find(`[data-test-id="movie-summary-${prop}"]`).text()
+          wrapper.find(`[data-testid="movie-summary-${prop}"]`).text()
         ).to.eq(`${prop}:${testProps[prop]}`);
       });
     });
@@ -64,13 +64,13 @@ describe('<MovieSummary/>', () => {
     ['language', 'actors'].forEach(prop => {
       it(`renders the ${prop} text`, () => {
         expect(
-          wrapper.find(`[data-test-id="movie-summary-${prop}"]`).text()
+          wrapper.find(`[data-testid="movie-summary-${prop}"]`).text()
         ).to.eq(`${prop}:${testProps[prop]}`);
       });
     });
 
     it('does not render the duration', () => {
-      expect(wrapper.find('[data-test-id="movie-summary-duration"]').exists())
+      expect(wrapper.find('[data-testid="movie-summary-duration"]').exists())
         .to.be.false;
     });
   });

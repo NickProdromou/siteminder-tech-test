@@ -17,13 +17,13 @@ export default function movieItem({
       onClick={() => (isSelected ? clearMovieDetail(id) : getMovieDetail(id))}
     >
       <div className={styles.titleContainer}>
-        <h1 className={styles.titleText} data-test-id="title-text">
+        <h1 className={styles.titleText} data-testid="title-text">
           {Title}
         </h1>
       </div>
       <div className={styles.infoContainer}>
         {isSelected && <StarIcon className={styles.selectedIcon} />}
-        <p className={styles.releaseYear} data-test-id="release-year-text">
+        <p className={styles.releaseYear} data-testid="release-year-text">
           {Year}
         </p>
       </div>
