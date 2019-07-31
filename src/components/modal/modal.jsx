@@ -10,25 +10,22 @@ export default class Modal extends Component {
     render: PropTypes.func.isRequired
   };
 
-  static defaultProps = {
-    isOpen: false
-  };
-
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       mountNode: null
     };
   }
 
-  createMountNode() {
+  createMountNode = () => {
     const modalTarget = document.createElement('div');
-    Object.assign(modalTarget, { className: styles.Root });
+    modalTarget.classList.add(styles.Root);
+    modalTarget.setAttribute('data-test-id', 'modal-mount-node');
     document.body.appendChild(modalTarget);
 
     this.setState({ mountNode: modalTarget });
-  }
+  };
 
   componentDidMount() {
     document.body.classList.add(styles.modalOpen);
@@ -40,7 +37,6 @@ export default class Modal extends Component {
     const { mountNode } = this.state;
 
     document.body.classList.remove(styles.modalOpen);
-    window.removeEventListener('keydown', this.listenForEsc, true);
     document.body.removeChild(mountNode);
   }
 
@@ -54,16 +50,30 @@ export default class Modal extends Component {
   render() {
     const { mountNode } = this.state;
 
+    if (false === this.props.render instanceof Function) {
+      return null;
+    }
+
+    if (false === this.props.onClose instanceof Function) {
+      return null;
+    }
+
     return (
       mountNode &&
       createPortal(
-        <div className={styles.modalContainer}>
+        <div
+          className={styles.modalContainer}
+          data-test-id="modal-root-element"
+        >
           <div className={styles.modalHeader}>
-            <button onClick={this.handleClose}>
+            <button
+              data-test-id="modal-close-button"
+              onClick={this.handleClose}
+            >
               <CloseIcon />
             </button>
           </div>
-          {this.props.render(this.handleClose)}
+          {this.props.render()}
         </div>,
         mountNode
       )

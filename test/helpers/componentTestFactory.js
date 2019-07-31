@@ -1,10 +1,11 @@
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import React from 'react';
 
 export default function ComponentTestFactory({
   Component,
   baseProps = {},
-  baseContext = {}
+  baseContext = {},
+  renderMethod = 'shallow'
 } = {}) {
   return ({ props = {}, context = {} } = {}) => {
     const testProps = {
@@ -17,8 +18,14 @@ export default function ComponentTestFactory({
       ...context
     };
 
+    let method = shallow;
+
+    if (renderMethod === 'mount') {
+      method = mount;
+    }
+
     return [
-      shallow(<Component {...props} />, { context: testContext }),
+      method(<Component {...props} />, { context: testContext }),
       testProps,
       testContext
     ];
