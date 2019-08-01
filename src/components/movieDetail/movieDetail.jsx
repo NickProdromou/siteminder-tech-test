@@ -15,6 +15,7 @@ export default class MovieDetail extends Component {
     language: PropTypes.string.isRequired,
     actors: PropTypes.string.isRequired,
     duration: PropTypes.string.isRequired,
+    year: PropTypes.string.isRequired,
     error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     loading: PropTypes.bool.isRequired
   };
@@ -46,10 +47,11 @@ export default class MovieDetail extends Component {
       imageUrl,
       language,
       actors,
-      duration
+      duration,
+      year
     } = this.props;
 
-    const summaryProps = { language, actors, duration };
+    const summaryProps = { language, actors, duration, year };
     const imageProps = {
       title,
       imageUrl:

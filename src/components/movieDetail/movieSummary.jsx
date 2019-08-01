@@ -23,5 +23,6 @@ export default function movieSummary(props) {
 movieSummary.propTypes = {
   language: PropTypes.string,
   actors: PropTypes.string,
-  duration: PropTypes.string
+  duration: PropTypes.string,
+  year: PropTypes.string
 };

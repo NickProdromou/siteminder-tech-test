@@ -46,6 +46,7 @@ function mapStateToProps(state) {
 
   return {
     title: getSelectedMovie(state).Title,
+    year: getSelectedMovie(state).Year,
     genres: getSelectedMovie(state).Genre,
     plot: getSelectedMovie(state).Plot,
     imageUrl: getSelectedMovie(state).Poster,
