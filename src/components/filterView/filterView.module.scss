@@ -3,14 +3,21 @@
 .Root {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .searchContainer {
   display: flex;
-  margin: $spacing-xxsmall $spacing-small;
+  margin: $spacing-large $spacing-large $spacing-xxsmall $spacing-large;
+  padding-bottom: $spacing-large;
+  border-bottom: 1px solid $color-gray8;
 }
 
 .listContainer {
-  margin: $spacing-xxsmall $spacing-small;
+  padding: $spacing-xxsmall $spacing-large;
   flex: 1 0 auto;
+}
+
+.pageControlContainer {
+  margin: $spacing-large 0;
 }

@@ -7,7 +7,8 @@ import { CloseIcon } from '../icons';
 export default class Modal extends Component {
   static propTypes = {
     onClose: PropTypes.func.isRequired,
-    render: PropTypes.func.isRequired
+    render: PropTypes.func.isRequired,
+    closeButtonText: PropTypes.string
   };
 
   constructor(props) {
@@ -61,16 +62,14 @@ export default class Modal extends Component {
     return (
       mountNode &&
       createPortal(
-        <div
-          className={styles.modalContainer}
-          data-testid="modal-root-element"
-        >
+        <div className={styles.modalContainer} data-testid="modal-root-element">
           <div className={styles.modalHeader}>
             <button
+              className={styles.closeButton}
               data-testid="modal-close-button"
               onClick={this.handleClose}
             >
-              <CloseIcon />
+              <CloseIcon className={styles.closeIcon} />
             </button>
           </div>
           {this.props.render()}

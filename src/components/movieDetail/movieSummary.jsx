@@ -10,7 +10,7 @@ export default function movieSummary(props) {
       (props[propName] && (
         <span data-testid={testId} key={testId}>
           <b className={styles.summaryHeading}>{propName}:</b>
-          {props[propName]}
+          <span className={styles.statText}>{props[propName]}</span>
         </span>
       )) ||
       null

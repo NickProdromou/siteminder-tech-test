@@ -11,9 +11,14 @@
 }
 
 .summaryHeading {
+  color: $color-gray9;
   font-weight: bold;
+  margin-right: $spacing-xxsmall;
+  font-family: $font-poppins;
+  font-size: 0.8rem;
 }
 
 .statText {
-  font: $font-poppins;
+  font-family: $font-poppins;
+  font-size: 0.8rem;
 }

@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import styles from './detailView.module.scss';
+import styles from './movieDetail.module.scss';
 import MovieSummary from './movieSummary';
 import MoviePosterImage from './moviePosterImage';
 import Spinner from 'react-spinkit';
+import { ErrorIcon } from '../icons';
 
 export default class MovieDetail extends Component {
   static propTypes = {
@@ -21,12 +22,17 @@ export default class MovieDetail extends Component {
   renderError() {
     const { error } = this.props;
 
-    return <div data-testid="movie-detail-error">{error}</div>;
+    return (
+      <div className={styles.errorState} data-testid="movie-detail-error">
+        <ErrorIcon className={styles.errorIcon} />
+        <p>Loading movie details encountered an error:{error}</p>
+      </div>
+    );
   }
 
   renderLoading() {
     return (
-      <div data-testid="movie-detail-loading">
+      <div class={styles.loadingContainer} data-testid="movie-detail-loading">
         <Spinner />
       </div>
     );
@@ -58,7 +64,12 @@ export default class MovieDetail extends Component {
           <h1 className={styles.movieTitle} data-testid="movie-detail-title">
             {title}
           </h1>
-          <span data-testid="movie-detail-genres-text">{genres}</span>
+          <span
+            className={styles.genres}
+            data-testid="movie-detail-genres-text"
+          >
+            {genres}
+          </span>
           <p className={styles.plotText} data-testid="movie-detail-plot-text">
             {plot}
           </p>

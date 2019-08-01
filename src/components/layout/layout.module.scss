@@ -8,10 +8,10 @@
 }
 
 .asideContainer {
-  border-right: 1px solid $color-nero;
+  background-color: $color-gray9;
 
   @include mq(small) {
-    flex: 1 0 auto;
+    flex: 1 0 100%;
   }
 
   @include mq($from: medium) {
@@ -20,13 +20,14 @@
 }
 
 .mainContainer {
+  background-color: $color-gray3;
+
   @include mq(small) {
     flex: 0 1 0%;
   }
 
   @include mq($from: medium) {
-    flex: 1 0 auto;
-    max-width: 1080px;
+    flex: 1 1 auto;
     padding: $spacing-large;
   }
 }
