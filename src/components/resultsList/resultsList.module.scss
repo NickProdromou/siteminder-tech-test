@@ -3,6 +3,7 @@
 .Root {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .itemList {
@@ -20,4 +21,28 @@
   align-items: center;
   justify-content: center;
   height: 100%;
+}
+
+.loadingAnimation {
+  color: $color-gray3;
+}
+
+.errorState {
+  display: flex;
+  flex-direction: row;
+  padding: $spacing-xxsmall $spacing-xsmall;
+  background-color: $color-tamarillo;
+  margin-bottom: $spacing-xsmall;
+  align-items: center;
+  border-radius: 5px;
+  font-family: $font-poppins;
+  color: $color-gray0;
+  font-size: 0.8em;
+}
+
+.errorIcon {
+  fill: $color-gray0;
+  width: 30px;
+  height: 30px;
+  margin-right: $spacing-xsmall;
 }

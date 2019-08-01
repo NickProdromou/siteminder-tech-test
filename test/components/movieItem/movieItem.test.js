@@ -19,7 +19,9 @@ describe('<MovieItem/>', () => {
         props: {
           Title: 'A movie title',
           Year: '2015',
-          isSelected: false
+          isSelected: false,
+          getMovieDetail: sinon.stub(),
+          clearMovieDetail: sinon.stub()
         }
       });
     });
@@ -54,7 +56,9 @@ describe('<MovieItem/>', () => {
         props: {
           Title: 'A movie title',
           Year: '2015',
-          isSelected: true
+          isSelected: true,
+          getMovieDetail: sinon.stub(),
+          clearMovieDetail: sinon.stub()
         }
       });
     });

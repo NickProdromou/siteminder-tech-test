@@ -26,20 +26,28 @@ export default function PageNavigation({
           onClick={() => getPrevPage(searchTerm, pageNumber)}
           data-testid="prev-page-button"
         >
-          <ChevronLeft />
+          <ChevronLeft className={styles.buttonIcon} />
         </button>
       )}
-      <div className={styles.listInfo}>
-        {pageNumber && <span data-testid="pageNumber">Page {pageNumber}</span>}
-        <span data-testid="totalCount">{totalCount} Results</span>
-      </div>
+      {parseInt(totalCount, 10) !== 0 && (
+        <div className={styles.listInfo}>
+          {pageNumber && (
+            <span className={styles.pageCount} data-testid="pageNumber">
+              Page {pageNumber}
+            </span>
+          )}
+          <span className={styles.totalCount} data-testid="totalCount">
+            {totalCount} Results
+          </span>
+        </div>
+      )}
       {hasNextPage && (
         <button
           className={styles.controlButton}
           onClick={() => getNextPage(searchTerm, pageNumber)}
           data-testid="next-page-button"
         >
-          <ChevronRight />
+          <ChevronRight className={styles.buttonIcon} />
         </button>
       )}
     </div>

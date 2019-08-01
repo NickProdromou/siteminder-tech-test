@@ -1,0 +1,89 @@
+@import '../../style/variables.scss';
+@import '~sass-mq';
+
+.Root {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+
+  @include mq($from: medium) {
+    background-color: $color-gray4;
+    padding: $spacing-large;
+    border-radius: 5px;
+  }
+
+  @include mq($from: large) {
+    flex-direction: row;
+  }
+}
+
+.infoPane {
+  flex: 1 0 50%;
+  margin-right: auto;
+}
+
+.movieTitle {
+  font-family: $font-poppins;
+  color: $color-gray9;
+  font-size: 1.6rem;
+}
+
+.genres {
+  font-family: $font-poppins;
+  color: $color-gray9;
+}
+
+.plotText {
+  padding-bottom: $spacing-small;
+  border-bottom: 1px solid $color-gray4;
+  font-family: $font-merriweather;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  max-width: 550px;
+  color: $color-gray9;
+}
+
+.imagePane {
+  display: flex;
+  flex: 1 0 auto;
+  height: 200px;
+  max-height: 400px;
+
+  @include mq($from: medium) {
+    justify-content: flex-start;
+    flex-direction: row;
+    height: auto;
+  }
+
+  @include mq($from: large) {
+    justify-content: flex-end;
+  }
+}
+
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.errorState {
+  display: flex;
+  flex-direction: row;
+  padding: $spacing-xxsmall $spacing-xsmall;
+  background-color: $color-tamarillo;
+  margin-bottom: $spacing-xsmall;
+  align-items: center;
+  border-radius: 5px;
+  font-family: $font-poppins;
+  color: $color-gray0;
+  font-size: 0.8em;
+}
+
+.errorIcon {
+  fill: $color-gray0;
+  width: 30px;
+  height: 30px;
+  margin-right: $spacing-xsmall;
+}

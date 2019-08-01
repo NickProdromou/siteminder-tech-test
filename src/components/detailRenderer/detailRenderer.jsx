@@ -4,7 +4,7 @@ import MovieDetail from '../movieDetail';
 import Modal from '../modal';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
+import styles from './detailRenderer.module.scss';
 import { clearMovie } from '../../actionCreators';
 
 import {
@@ -28,7 +28,7 @@ export function DumbDetailRenderer(props) {
           />
         )}
       </Breakpoint>
-      <Breakpoint medium up>
+      <Breakpoint className={styles.mediumUpBreakpoint} medium up>
         {isMovieSelected && <MovieDetail {...props} />}
       </Breakpoint>
     </React.Fragment>

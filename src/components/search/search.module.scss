@@ -4,9 +4,9 @@
   padding: $spacing-small 0 $spacing-small $spacing-xlarge;
   display: flex;
   position: relative;
-  border: 1px solid $color-baltic-sea;
   border-radius: 12px;
   width: 100%;
+  background-color: $color-gray4;
 }
 
 .textInput {
@@ -15,9 +15,11 @@
   flex: 1 0 auto;
   align-items: baseline;
   font-family: $font-poppins;
+  background: none;
 
   &::placeholder {
     font-family: $font-poppins;
+    color: $color-gray7;
   }
 }
 
@@ -26,4 +28,5 @@
   left: 0;
   top: 10px;
   left: 4px;
+  fill: $color-gray9;
 }

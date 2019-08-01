@@ -55,15 +55,17 @@ export function DumbFilterView({
           clearMovieDetail={clearSelectedMovie}
         />
       </div>
-      <PageNavigation
-        hasNextPage={hasNextPage}
-        hasPrevPage={hasPrevPage}
-        pageNumber={pageNumber}
-        totalCount={totalCount}
-        getNextPage={getNextPage}
-        getPrevPage={getPrevPage}
-        searchTerm={searchTerm}
-      />
+      <div className={styles.pageControlContainer}>
+        <PageNavigation
+          hasNextPage={hasNextPage}
+          hasPrevPage={hasPrevPage}
+          pageNumber={pageNumber}
+          totalCount={totalCount}
+          getNextPage={getNextPage}
+          getPrevPage={getPrevPage}
+          searchTerm={searchTerm}
+        />
+      </div>
     </div>
   );
 }

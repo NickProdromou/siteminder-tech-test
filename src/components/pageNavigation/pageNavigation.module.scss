@@ -19,10 +19,25 @@
   font-family: $font-poppins;
   align-items: center;
   flex: 1 0 auto;
+  color: $color-gray3;
+}
+
+.pageCount {
+  font-size: 0.9em;
+  margin-bottom: $spacing-xxsmall;
+}
+
+.totalCount {
+  font-size: 0.9em;
 }
 
 .controlButton {
+  background: none;
   display: block;
   border: none;
-  background-color: none;
+  cursor: pointer;
+}
+
+.buttonIcon {
+  fill: $color-gray4;
 }

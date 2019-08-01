@@ -10,13 +10,17 @@ const MoviePosterImageStub = createStubComponent({
 const SpinnerStub = createStubComponent({
   displayName: 'Spinner'
 });
+const ErrorIconStub = createStubComponent({
+  displayName: 'ErrorIconStub'
+});
 
 const MovieDetail = proxyquire(
   '../../../src/components/movieDetail/movieDetail',
   {
     './movieSummary': MovieSummaryStub,
     './moviePosterImage': MoviePosterImageStub,
-    'react-spinkit': SpinnerStub
+    'react-spinkit': SpinnerStub,
+    '../icons': { ErrorIcon: ErrorIconStub }
   }
 ).default;
 
@@ -103,10 +107,22 @@ describe('<MovieDetail/>', () => {
       });
     });
 
+    it('renders the error icon', () => {
+      expect(
+        wrapper
+          .find('[data-testid="movie-detail-error"]')
+          .find(ErrorIconStub)
+          .exists()
+      ).to.be.true;
+    });
+
     it('renders the error', () => {
-      expect(wrapper.find('[data-testid="movie-detail-error"]').text()).to.eq(
-        testProps.error
-      );
+      expect(
+        wrapper
+          .find('[data-testid="movie-detail-error"]')
+          .find('p')
+          .text()
+      ).to.eq(`Loading movie details encountered an error:${testProps.error}`);
     });
   });
 

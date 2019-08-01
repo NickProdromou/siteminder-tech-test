@@ -10,10 +10,19 @@ $spacing-large: 24px;
 $spacing-xlarge: 36px;
 $spacing-xxlarge: 48px;
 
-$color-nero: #202020;
-$color-baltic-sea: #2b2a2d;
-$color-zircon: #e1ebeb;
+$color-gray0: #f8f9fa;
+$color-gray1: #ebedef;
+$color-gray2: #dce1e4;
+$color-gray3: #ced3d7;
+$color-gray4: #bfc4c7;
+$color-gray5: #afb3b6;
+$color-gray6: #9ca0a3;
+$color-gray7: #86898b;
+$color-gray8: #696c6e;
+$color-gray9: #3d3f40;
+
 $color-firebrush: #e49f43;
+$color-tamarillo: #a21824;
 
 $mq-responsive: true;
 
@@ -25,4 +34,3 @@ $mq-breakpoints: (
 );
 
 $mq-show-breakpoints: (small, medium, large, extraLarge);
-

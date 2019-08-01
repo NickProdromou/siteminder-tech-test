@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Spinner from 'react-spinkit';
 import MovieItem from '../movieItem';
+import { ErrorIcon } from '../icons';
 
 import styles from './resultsList.module.scss';
 
@@ -15,7 +16,18 @@ export default class ResultsList extends Component {
   renderLoading() {
     return (
       <div className={styles.loadingContainer}>
-        <Spinner name="three-bounce" />
+        <Spinner className={styles.loadingAnimation} name="three-bounce" />
+      </div>
+    );
+  }
+
+  renderError() {
+    const { error } = this.props;
+
+    return (
+      <div className={styles.errorState} data-testid="results-list-error">
+        <ErrorIcon className={styles.errorIcon} />
+        <p>Movie search returned an error: {error}</p>
       </div>
     );
   }
@@ -48,7 +60,7 @@ export default class ResultsList extends Component {
     return (
       <div className={styles.Root}>
         <div className={styles.listContainer}>
-          {error && <p data-testid="results-list-error">{error}</p>}
+          {error && this.renderError()}
           {loading ? this.renderLoading() : this.renderList()}
         </div>
       </div>

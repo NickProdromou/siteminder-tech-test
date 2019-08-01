@@ -3,14 +3,18 @@
 .Root {
   position: fixed;
   z-index: 100;
+  top: 0;
+  display: flex;
+  align-items: stretch;
   width: 100%;
   height: 100%;
-  top: 0;
-  background: white;
 }
 
 .modalContainer {
-  border: 1px solid #fff000;
+  background-color: $color-gray3;
+  width: 100%;
+  height: 100%;
+  padding: $spacing-medium $spacing-xlarge;
 }
 
 .modalOpen {
@@ -21,4 +25,21 @@
 .modalHeader {
   display: flex;
   padding: $spacing-medium;
+  justify-content: flex-end;
+}
+
+.closeButton {
+  background: none;
+  display: block;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-family: $font-poppins;
+  font-weight: 400;
+}
+
+.closeIcon {
+  fill: $color-gray9;
+  margin-left: $spacing-xsmall;
 }
