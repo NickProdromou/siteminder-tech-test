@@ -35,7 +35,8 @@ movieItem.propTypes = {
   Title: PropTypes.string.isRequired,
   Year: PropTypes.string.isRequired,
   isSelected: PropTypes.bool,
-  getMovieDetail: PropTypes.func.isRequired
+  getMovieDetail: PropTypes.func.isRequired,
+  clearMovieDetail: PropTypes.func.isRequired
 };
 
 movieItem.defaultProps = {

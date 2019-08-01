@@ -7,14 +7,18 @@ const MovieItemStub = createStubComponent({
   displayName: 'PageNavigationStub'
 });
 const SpinnerStub = createStubComponent({
-  displayName: 'ResultsListStub'
+  displayName: 'SpinnerStub'
+});
+const ErrorIconStub = createStubComponent({
+  displayName: 'ErrorIconStub'
 });
 
 const ResultsList = proxyquire(
   '../../../src/components/resultsList/resultsList',
   {
     'react-spinkit': SpinnerStub,
-    '../movieItem': MovieItemStub
+    '../movieItem': MovieItemStub,
+    '../icons': { ErrorIcon: ErrorIconStub }
   }
 ).default;
 
@@ -53,16 +57,16 @@ describe('<ResultsList/>', () => {
         props: {
           loading: false,
           results: [
-            { id: 1 },
-            { id: 2 },
-            { id: 3 },
-            { id: 4 },
-            { id: 5 },
-            { id: 6 },
-            { id: 7 },
-            { id: 8 },
-            { id: 9 },
-            { id: 10 }
+            { imdbID: 1 },
+            { imdbID: 2 },
+            { imdbID: 3 },
+            { imdbID: 4 },
+            { imdbID: 5 },
+            { imdbID: 6 },
+            { imdbID: 7 },
+            { imdbID: 8 },
+            { imdbID: 9 },
+            { imdbID: 10 }
           ],
           error: false
         }
@@ -110,10 +114,22 @@ describe('<ResultsList/>', () => {
       expect(wrapper.find(MovieItemStub)).to.have.length(0);
     });
 
+    it('renders an error icon', () => {
+      expect(
+        wrapper
+          .find('[data-testid="results-list-error"]')
+          .find(ErrorIconStub)
+          .exists()
+      ).to.be.true;
+    });
+
     it('renders the error text', () => {
-      expect(wrapper.find('[data-testid="results-list-error"]').text()).to.eq(
-        testProps.error
-      );
+      expect(
+        wrapper
+          .find('[data-testid="results-list-error"]')
+          .find('p')
+          .text()
+      ).to.eq(`Movie search returned an error: ${testProps.error}`);
     });
   });
 });

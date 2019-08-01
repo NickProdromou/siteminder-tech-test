@@ -1,4 +1,9 @@
-import { ComponentTestFactory, createStubComponent } from '../../helpers';
+import {
+  ComponentTestFactory,
+  createStubComponent,
+  propTypeWarningFilter,
+  restorePropTypeWarnings
+} from '../../helpers';
 import proxyquire, { noCallThru } from 'proxyquire';
 
 noCallThru();
@@ -31,7 +36,7 @@ describe('<PageNavigation/>', () => {
           hasNextPage: true,
           hasPrevPage: true,
           pageNumber: 2,
-          totalCount: 150,
+          totalCount: '150',
           getNextPage: sinon.stub(),
           getPrevPage: sinon.stub(),
           searchTerm: 'bee movie'
@@ -74,7 +79,7 @@ describe('<PageNavigation/>', () => {
           hasNextPage: true,
           hasPrevPage: true,
           pageNumber: 2,
-          totalCount: 150,
+          totalCount: '150',
           getNextPage: sinon.stub(),
           getPrevPage: sinon.stub(),
           searchTerm: 'indiana jones'
@@ -102,7 +107,7 @@ describe('<PageNavigation/>', () => {
           hasNextPage: true,
           hasPrevPage: true,
           pageNumber: 2,
-          totalCount: 150,
+          totalCount: '150',
           getNextPage: sinon.stub(),
           getPrevPage: sinon.stub(),
           searchTerm: 'bee movie'
@@ -130,7 +135,7 @@ describe('<PageNavigation/>', () => {
           hasNextPage: false,
           hasPrevPage: true,
           pageNumber: 2,
-          totalCount: 150,
+          totalCount: '150',
           getNextPage: sinon.stub(),
           getPrevPage: sinon.stub(),
           searchTerm: 'bee movie'
@@ -173,7 +178,7 @@ describe('<PageNavigation/>', () => {
           hasNextPage: true,
           hasPrevPage: false,
           pageNumber: 2,
-          totalCount: 150,
+          totalCount: '150',
           getNextPage: sinon.stub(),
           getPrevPage: sinon.stub(),
           searchTerm: 'bee movie'
@@ -211,18 +216,22 @@ describe('<PageNavigation/>', () => {
     let testProps;
 
     before(() => {
+      propTypeWarningFilter();
+
       [wrapper, testProps] = testRender({
         props: {
           hasNextPage: true,
           hasPrevPage: false,
           pageNumber: null,
-          totalCount: 0,
+          totalCount: '0',
           getNextPage: sinon.stub(),
           getPrevPage: sinon.stub(),
           searchTerm: 'the matrix'
         }
       });
     });
+
+    after(restorePropTypeWarnings);
 
     it('renders to the page', () => {
       expect(wrapper.isEmptyRender()).to.be.false;
@@ -232,10 +241,8 @@ describe('<PageNavigation/>', () => {
       expect(wrapper.find('[data-testid="pageNumber"]').exists()).to.be.false;
     });
 
-    it('renders the total count from the props', () => {
-      expect(wrapper.find('[data-testid="totalCount"]').text()).to.include(
-        testProps.totalCount
-      );
+    it('does not renders the total count', () => {
+      expect(wrapper.find('[data-testid="totalCount"]').exists()).to.be.false;
     });
   });
 });
