@@ -46,7 +46,6 @@
 .imagePane {
   display: flex;
   flex: 1 0 auto;
-  height: 200px;
   max-height: 400px;
 
   @include mq($from: medium) {

@@ -5,8 +5,12 @@ import styles from './layout.module.scss';
 export default function Layout({ SideBar, Main }) {
   return (
     <div className={styles.Root}>
-      <aside className={styles.asideContainer}>{SideBar}</aside>
-      <div className={styles.mainContainer}>{Main}</div>
+      <aside data-testid="layout-side-slot" className={styles.asideContainer}>
+        {SideBar}
+      </aside>
+      <div data-testid="layout-main-slot" className={styles.mainContainer}>
+        {Main}
+      </div>
     </div>
   );
 }

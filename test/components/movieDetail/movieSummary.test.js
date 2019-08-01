@@ -14,7 +14,8 @@ describe('<MovieSummary/>', () => {
         props: {
           language: 'English',
           actors: 'Joe Perosn',
-          duration: 'long'
+          duration: 'long',
+          year: '2019'
         }
       });
     });
@@ -23,7 +24,7 @@ describe('<MovieSummary/>', () => {
       expect(wrapper.isEmptyRender()).to.be.false;
     });
 
-    ['language', 'actors', 'duration'].forEach(prop => {
+    ['language', 'actors', 'duration', 'year'].forEach(prop => {
       it(`renders the ${prop} text`, () => {
         expect(
           wrapper.find(`[data-testid="movie-summary-${prop}"]`).text()
@@ -70,8 +71,8 @@ describe('<MovieSummary/>', () => {
     });
 
     it('does not render the duration', () => {
-      expect(wrapper.find('[data-testid="movie-summary-duration"]').exists())
-        .to.be.false;
+      expect(wrapper.find('[data-testid="movie-summary-duration"]').exists()).to
+        .be.false;
     });
   });
 });

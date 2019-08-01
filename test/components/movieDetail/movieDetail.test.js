@@ -41,6 +41,7 @@ describe('<MovieDetail/>', () => {
           language: 'Russian',
           actors: 'the tsar',
           duration: 'quite long',
+          year: 2019,
           error: false,
           loading: false
         }
@@ -74,6 +75,7 @@ describe('<MovieDetail/>', () => {
         language: testProps.language,
         actors: testProps.actors,
         duration: testProps.duration,
+        year: testProps.year,
         children: []
       });
     });
