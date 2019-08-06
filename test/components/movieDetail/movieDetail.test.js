@@ -41,7 +41,7 @@ describe('<MovieDetail/>', () => {
           language: 'Russian',
           actors: 'the tsar',
           duration: 'quite long',
-          year: 2019,
+          year: '2019',
           error: false,
           loading: false
         }
@@ -103,7 +103,7 @@ describe('<MovieDetail/>', () => {
           imageUrl: 'http://imageurl.com',
           language: 'Russian',
           actors: 'the tsar',
-          year: 1234,
+          year: '1234',
           duration: 'quite long',
           loading: false
         }
@@ -142,7 +142,7 @@ describe('<MovieDetail/>', () => {
           imageUrl: 'http://imageurl.com',
           language: 'Russian',
           actors: 'the tsar',
-          year: 1234,
+          year: '1234',
           duration: 'quite long',
           loading: true,
           error: false
