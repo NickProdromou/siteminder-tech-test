@@ -77,11 +77,12 @@ DumbFilterView.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   hasNextPage: PropTypes.bool.isRequired,
+  pageNumber: PropTypes.number.isRequired,
   hasPrevPage: PropTypes.bool.isRequired,
   getNextPage: PropTypes.func.isRequired,
   getPrevPage: PropTypes.func.isRequired,
   searchTerm: PropTypes.string.isRequired,
-  totalCount: PropTypes.string.isRequired
+  totalCount: PropTypes.number.isRequired
 };
 
 function mapStateToProps(state) {

@@ -9,12 +9,12 @@ export const getMovieItems = createSelector(
 
 export const getTotalCount = createSelector(
   getMovieListState,
-  state => state.totalCount
+  state => parseInt(state.totalCount, 10)
 );
 
 export const getPageNumber = createSelector(
   getMovieListState,
-  state => state.currentPage
+  state => parseInt(state.currentPage, 10)
 );
 
 export const getSearchTerm = createSelector(

@@ -15,7 +15,7 @@ export default class MovieDetail extends Component {
     language: PropTypes.string.isRequired,
     actors: PropTypes.string.isRequired,
     duration: PropTypes.string.isRequired,
-    year: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired,
     error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     loading: PropTypes.bool.isRequired
   };
