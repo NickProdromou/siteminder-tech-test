@@ -40,7 +40,7 @@ describe('<FilterView/>', () => {
           hasNextPage: true,
           hasPrevPage: true,
           pageNumber: 4,
-          totalCount: '200',
+          totalCount: 200,
           getNextPage: sinon.stub(),
           getPrevPage: sinon.stub(),
           searchTerm: 'some string'

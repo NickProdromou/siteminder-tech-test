@@ -33,7 +33,10 @@ export default class MovieDetail extends Component {
 
   renderLoading() {
     return (
-      <div class={styles.loadingContainer} data-testid="movie-detail-loading">
+      <div
+        className={styles.loadingContainer}
+        data-testid="movie-detail-loading"
+      >
         <Spinner />
       </div>
     );

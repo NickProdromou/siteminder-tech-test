@@ -36,7 +36,7 @@ describe('<PageNavigation/>', () => {
           hasNextPage: true,
           hasPrevPage: true,
           pageNumber: 2,
-          totalCount: '150',
+          totalCount: 150,
           getNextPage: sinon.stub(),
           getPrevPage: sinon.stub(),
           searchTerm: 'bee movie'
@@ -79,7 +79,7 @@ describe('<PageNavigation/>', () => {
           hasNextPage: true,
           hasPrevPage: true,
           pageNumber: 2,
-          totalCount: '150',
+          totalCount: 150,
           getNextPage: sinon.stub(),
           getPrevPage: sinon.stub(),
           searchTerm: 'indiana jones'
@@ -107,7 +107,7 @@ describe('<PageNavigation/>', () => {
           hasNextPage: true,
           hasPrevPage: true,
           pageNumber: 2,
-          totalCount: '150',
+          totalCount: 150,
           getNextPage: sinon.stub(),
           getPrevPage: sinon.stub(),
           searchTerm: 'bee movie'
@@ -135,7 +135,7 @@ describe('<PageNavigation/>', () => {
           hasNextPage: false,
           hasPrevPage: true,
           pageNumber: 2,
-          totalCount: '150',
+          totalCount: 150,
           getNextPage: sinon.stub(),
           getPrevPage: sinon.stub(),
           searchTerm: 'bee movie'
@@ -178,7 +178,7 @@ describe('<PageNavigation/>', () => {
           hasNextPage: true,
           hasPrevPage: false,
           pageNumber: 2,
-          totalCount: '150',
+          totalCount: 150,
           getNextPage: sinon.stub(),
           getPrevPage: sinon.stub(),
           searchTerm: 'bee movie'
@@ -223,7 +223,7 @@ describe('<PageNavigation/>', () => {
           hasNextPage: true,
           hasPrevPage: false,
           pageNumber: null,
-          totalCount: '0',
+          totalCount: 0,
           getNextPage: sinon.stub(),
           getPrevPage: sinon.stub(),
           searchTerm: 'the matrix'

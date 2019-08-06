@@ -58,7 +58,7 @@ PageNavigation.propTypes = {
   hasNextPage: PropTypes.bool.isRequired,
   hasPrevPage: PropTypes.bool.isRequired,
   pageNumber: PropTypes.number.isRequired,
-  totalCount: PropTypes.string.isRequired,
+  totalCount: PropTypes.number.isRequired,
   getNextPage: PropTypes.func.isRequired,
   getPrevPage: PropTypes.func.isRequired,
   searchTerm: PropTypes.string.isRequired
